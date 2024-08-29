@@ -42,6 +42,7 @@
             checkBox1 = new CheckBox();
             numericUpDown1 = new NumericUpDown();
             label7 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
@@ -159,11 +160,19 @@
             label7.TabIndex = 12;
             label7.Text = "懒加载深度";
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(104, 212);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 13;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dateTimePicker1);
             Controls.Add(label7);
             Controls.Add(numericUpDown1);
             Controls.Add(checkBox1);
@@ -200,5 +209,6 @@
         private CheckBox checkBox1;
         private NumericUpDown numericUpDown1;
         private Label label7;
+        private DateTimePicker dateTimePicker1;
     }
 }
