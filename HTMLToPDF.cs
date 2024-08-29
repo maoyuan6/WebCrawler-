@@ -1,44 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DinkToPdf;
-using SelectPdf;
-using Orientation = System.Windows.Forms.Orientation;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Wkhtmltopdf.NetCore;
+using Wkhtmltopdf.NetCore.Options;
+using Size = Wkhtmltopdf.NetCore.Options.Size;
 
-namespace WinFormsApp1
+namespace HtmlToPDFCore
 {
-    public class HTMLToPDF
-    { 
-        /// <summary>
-        /// Html导出PDF
-        /// </summary>
-        /// <returns></returns> 
-        public string ToPDF(string htmlString)
+    public class HtmlToPDF
+    {
+        public PageMargins Margins { get; set; }
+        public PageOrientation Orientation { get; set; }
+        public bool DisableSmartShrinking { get; set; }
+        public Size PageSize { get; set; }
+        public HtmlToPDF()
+        {
+            Orientation = PageOrientation.Portrait;
+            PageSize = Size.A4;
+        }
+
+        public byte[] ReturnPDF(string html)
         { 
-            HtmlToPdf Renderer = new HtmlToPdf();
-            //设置Pdf参数
-            Renderer.Options.PdfPageOrientation = PdfPageOrientation.Landscape;//设置页面方式-横向  PdfPageOrientation.Portrait  竖向
-            Renderer.Options.PdfPageSize = PdfPageSize.A4;//设置页面大小，30种页面大小可以选择
-            Renderer.Options.MarginTop = 10;   //上下左右边距设置  
-            Renderer.Options.MarginBottom = 10;
-            Renderer.Options.MarginLeft = 10;
-            Renderer.Options.MarginRight = 10;
-
-            //设置更多额参数可以去HtmlToPdfOptions里面选择设置
-            var docHtml = Renderer.ConvertHtmlString(htmlString);//根据html内容导出PDF
-           
-            string webRootPath = "D://";  //获取项目运行绝对路径
-            var path = $"ExportPDF/{DateTime.Now.ToString("yyyyMMdd")}/";//文件相对路径
-            var savepathHtml = $"{webRootPath}{path}{Guid.NewGuid().ToString()}-Html.pdf";//保存绝对路径
-            if (!Directory.Exists(Path.GetDirectoryName(webRootPath + path)))
+            WkhtmltopdfConfiguration.RotativaPath = "D:\\code\\测试\\winfrom\\进度条\\WinFormsApp1\\Rotativa";
+            var pdf = new GeneratePdf(null);
+            var convertOptions = new ConvertOptionsExtended();
+            if (Margins != null)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(webRootPath + path));
+                convertOptions.PageMargins = new Margins(Margins.top, Margins.right, Margins.bottom, Margins.left);
             }
-            docHtml.Save(savepathHtml);
+            convertOptions.PageOrientation = Orientation;
+            convertOptions.DisableSmartShrinking = DisableSmartShrinking;
+            convertOptions.PageSize = PageSize;
 
-            return savepathHtml;
+            var buffer = pdf.GetPDF(html);
+            return buffer;
         }
     }
 }

@@ -1,9 +1,12 @@
-﻿using System.Drawing.Printing; 
+﻿using System.Drawing.Printing;
+using System.Runtime.InteropServices;
 using Aspose.Html;
 using Aspose.Html.Converters;
 using Aspose.Html.Dom;
 using Aspose.Html.Rendering.Pdf;
 using Aspose.Html.Saving;
+using HtmlToPDFCore;
+using SelectPdf;
 
 namespace WinFormsApp1
 {
@@ -23,13 +26,25 @@ namespace WinFormsApp1
         {
             if (File.Exists(filePath))
             {
+           
                 // 从指定文件中读取 HTML 内容
                 string htmlContent = File.ReadAllText(filePath);
-                // 注册编码提供者
-                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-                Converter.ConvertHTML(htmlContent.Replace("&nbsp;", ""), ".", new PdfSaveOptions(), "C:\\Users\\maoyuan0174\\Desktop\\新建文本文档 (4).pdf");
+                var html = htmlContent;
 
+                var pdfFile = @"C:\Users\maoyuan0174\Desktop\新建文本文档 (6).pdf";
+
+              
+                var pdf = new HtmlToPDF();
+                var buffer = pdf.ReturnPDF(html);
+                if (File.Exists(pdfFile)) File.Delete(pdfFile);
+                using (var f = new FileStream(pdfFile, FileMode.Create))
+                {
+                    f.Write(buffer, 0, buffer.Length);
+                    f.Flush();
+                    f.Close();
+                } 
+                 
                 // htmlContent = htmlContent.Replace("&nbsp;", "");
                 // 创建 WebBrowser 控件
                 //WebBrowser webBrowser = new WebBrowser();
