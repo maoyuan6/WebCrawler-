@@ -1,4 +1,5 @@
-﻿using System.Drawing.Printing;
+﻿using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 using Aspose.Html;
 using Aspose.Html.Converters;
@@ -19,7 +20,7 @@ namespace WinFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         { 
-            PrintHtmlFromFile("C:\\Users\\maoyuan0174\\Desktop\\新建文本文档 (4).html");
+            PrintHtmlFromFile("C:\\Users\\maoyuan0174\\Desktop\\新建文本文档 (6).html");
         }
 
         private void PrintHtmlFromFile(string filePath)
@@ -43,8 +44,20 @@ namespace WinFormsApp1
                     f.Write(buffer, 0, buffer.Length);
                     f.Flush();
                     f.Close();
-                } 
-                 
+                }
+
+                if (System.IO.File.Exists(pdfFile))
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = pdfFile,
+                        UseShellExecute = true  // 确保使用操作系统的默认程序打开文件
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("文件不存在！");
+                }
                 // htmlContent = htmlContent.Replace("&nbsp;", "");
                 // 创建 WebBrowser 控件
                 //WebBrowser webBrowser = new WebBrowser();
