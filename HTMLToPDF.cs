@@ -22,6 +22,7 @@ namespace HtmlToPDFCore
 
         public byte[] ReturnPDF(string html)
         { 
+
             WkhtmltopdfConfiguration.RotativaPath = "D:\\code\\测试\\winfrom\\进度条\\WinFormsApp1\\Rotativa";
             var pdf = new GeneratePdf(null);
             var convertOptions = new ConvertOptionsExtended();

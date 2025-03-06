@@ -1,34 +1,327 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DevExpress.Data" Version="18.1.16" />
-    <PackageReference Include="DinkToPdf" Version="1.0.8" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
-    <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1004" />
-    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
-    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="18.3.0" />
-    <PackageReference Include="Selenium.WebDriver" Version="4.20.0" />
-    <PackageReference Include="Wkhtmltopdf.NetCore" Version="3.0.2" />
-  </ItemGroup>
+	<ItemGroup> 
+		<PackageReference Include="DinkToPdf" Version="1.0.8" />
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
+		<PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1004" />
+		<PackageReference Include="Oracle.ManagedDataAccess" Version="19.3.1" />
+		<PackageReference Include="PdfiumViewer" Version="2.13.0" />
+		<PackageReference Include="Select.HtmlToPdf.NetCore" Version="18.3.0" />
+		<PackageReference Include="Selenium.WebDriver" Version="4.20.0" />
+		<PackageReference Include="Wkhtmltopdf.NetCore" Version="3.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Aspose.Cells">
-      <HintPath>lib\aspose\Aspose.Cells.dll</HintPath>
-    </Reference>
-    <Reference Include="Aspose.HTML">
-      <HintPath>lib\aspose\Aspose.HTML.dll</HintPath>
-    </Reference>
-    <Reference Include="Aspose.Words">
-      <HintPath>lib\aspose\Aspose.Words.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
+	<ItemGroup>
+		<Reference Include="Aspose.Cells">
+			<HintPath>lib\aspose\Aspose.Cells.dll</HintPath>
+		</Reference>
+		<Reference Include="Aspose.HTML">
+			<HintPath>lib\aspose\Aspose.HTML.dll</HintPath>
+		</Reference>
+		<Reference Include="Aspose.Words">
+			<HintPath>lib\aspose\Aspose.Words.dll</HintPath>
+		</Reference>
+		<Reference Include="AxInterop.SHDocVw, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\AxInterop.SHDocVw.dll</HintPath>
+		</Reference>
+		<Reference Include="Clinic.Case.Business">
+		  <HintPath>tool\Clinic.Case.Business.dll</HintPath>
+		</Reference>
+		<Reference Include="Clinic.Case.Interface">
+		  <HintPath>tool\Clinic.Case.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="DCSoft.Writer">
+		  <HintPath>tool\DCSoft.Writer.dll</HintPath>
+		</Reference>
+		<Reference Include="DevComponents.DotNetBar2, Version=12.0.0.1, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\DevComponents.DotNetBar2.dll</HintPath>
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<Private>True</Private>
+		</Reference>
+		<Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+			<EmbedInteropTypes>False</EmbedInteropTypes>
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Charts.v20.2.Core.dll</HintPath>
+			<Private>True</Private>
+		</Reference>
+		<Reference Include="DevExpress.Data.v20.2">
+		  <HintPath>..\..\..\新MZ\ref\DevExpress.Data.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Images.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Images.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Map.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Map.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Office.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Office.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Pdf.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Pdf.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.RichEdit.v20.2.Export">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.RichEdit.v20.2.Export.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Printing.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Printing.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.RichEdit.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.RichEdit.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.SpellChecker.v20.2.Core">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.SpellChecker.v20.2.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Data.Desktop.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Data.Desktop.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.Utils.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.Utils.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraBars.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraBars.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraCharts.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraCharts.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraCharts.v20.2.UI">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraCharts.v20.2.UI.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraCharts.v20.2.Wizard">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraCharts.v20.2.Wizard.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraEditors.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraEditors.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraGrid.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraGrid.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraLayout.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraLayout.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraMap.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraMap.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraNavBar.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraNavBar.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraPivotGrid.v20.2">
+		  <HintPath>tool\DevExpress.XtraPivotGrid.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraPrinting.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraPrinting.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraRichEdit.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraRichEdit.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraSpellChecker.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraSpellChecker.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraTreeList.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraTreeList.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="DevExpress.XtraVerticalGrid.v20.2">
+			<HintPath>D:\code\测试\新MZ\ref\DevExpress.XtraVerticalGrid.v20.2.dll</HintPath>
+		</Reference>
+		<Reference Include="ExplorerUserControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\ExplorerUserControl.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Advice.Interface, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Advice.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.AIOCS.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.AIOCS.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.AP.Business, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.AP.Business.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.AP.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.AP.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Approval.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Approval.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Clinic.Charge, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Clinic.Charge.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Clinic.ClinicCase, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Clinic.ClinicCase.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Clinic.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Clinic.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Clinic.Realization, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Clinic.Realization.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.CRM.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.CRM.Business.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Data.Controls, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Data.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Data.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Data.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Dict.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Dict.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.DrugAdvice.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.DrugAdvice.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.DrugStore.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.DrugStore.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.DrugWindow.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.DrugWindow.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Employee.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Employee.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.InHos.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.InHos.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.IntegrateReport.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.IntegrateReport.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.MaterialDict.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.MaterialDict.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.MaterialStore.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.MaterialStore.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.MTS.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.MTS.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.ReadIDCard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.ReadIDCard.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Schedule.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Schedule.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Template.Controls, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Template.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="HIS.Template.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HIS.Template.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="HPSoft.Core, Version=1.0.0.1, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HPSoft.Core.dll</HintPath>
+		</Reference>
+		<Reference Include="HPSoft.EmrEditor">
+		  <HintPath>tool\HPSoft.EmrEditor.dll</HintPath>
+		</Reference>
+		<Reference Include="HPSoft.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HPSoft.FrameWork.dll</HintPath>
+		</Reference>
+		<Reference Include="HPSoft.FrameWork.WinForm, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\HPSoft.FrameWork.WinForm.dll</HintPath>
+		</Reference>
+		<Reference Include="Medicare.NeuSoft, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Medicare.NeuSoft.dll</HintPath>
+		</Reference>
+		<Reference Include="MKPassLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\MKPassLib.dll</HintPath>
+		</Reference>
+		<Reference Include="Radiate.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Radiate.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="SignalRClient.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\SignalRClient.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="Winner.Data.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Winner.Data.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="Winner.Employee.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Winner.Employee.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="Winner.Template.Controls, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Winner.Template.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="Winner.Template.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\Winner.Template.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerHIS.Common, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\WinnerHIS.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Report.Interface, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\新MZ\ref\WinnerSoft.Report.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Report.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Report.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerMain.System, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerMain.System.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerMain.System.Interface, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerMain.System.Interface.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.System, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.System.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Data, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Data.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Object, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Object.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Service, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Service.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Session, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Session.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Windows, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Windows.dll</HintPath>
+		</Reference>
+		<Reference Include="WinnerSoft.Windows.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>D:\code\测试\新MZ\ref\WinnerSoft.Windows.Controls.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 </Project>

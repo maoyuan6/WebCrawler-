@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动分页打印</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10mm;
+            font-size: 14px;
+            font-family: 'Arial', '宋体', sans-serif;
+            line-height: 1.5;
+        }
+
+        .content {
+            width: 190mm; /* 宽度适应 A4 */
+            box-sizing: border-box;
+        }
+
+        .page {
+            margin-bottom: 10mm; /* 每页之间的间距 */
+            page-break-after: always; /* 分页符 */
+        }
+
+        #HosTitle {
+            text-align: center;
+            font-size: 35px;
+            font-weight:800;
+        }
+        #DocTitle {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 600;
+        }
+        .summaryinput {
+            border: none;
+            text-align: center;
+        }
+        .summarytd {
+            text-align: center;
+        }
+        .baseinput {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="content" class="content">
+        <TABLE id=pagetable class=pagetable>
+            <THEAD style="DISPLAY: table-header-group;">
+                <TR>
+                    <TD id=HosTitle class=hostitle colSpan=8>南京海熙护理院</TD>
+                </TR>
+                <TR>
+                    <TD id=DocTitle class=doctitle colSpan=8>首次病程记录</TD>
+                </TR>
+                <TR>
+                    <TD class=summarytd style="FONT-SIZE: 14px" colSpan=8>
+                        <SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryDept">科别:</LABLE><INPUT id=SummaryDept class=summaryinput
+                                                                       style="WIDTH: 60px" value=内科></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryName">姓名:</LABLE><INPUT id=SummaryName class=summaryinput
+                                                                       style="WIDTH: 60px" value=王铮></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryGender">性别:</LABLE><INPUT id=SummaryGender class=summaryinput
+                                                                         style="WIDTH: 30px" value=女></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryAge">年龄:</LABLE><INPUT id=SummaryAge class=summaryinput
+                                                                      style="WIDTH: 40px" value=87岁></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryArea">病区:</LABLE><INPUT id=SummaryArea class=summaryinput
+                                                                       style="WIDTH: 60px" value=四病区></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryBed">床号:</LABLE><INPUT id=SummaryBed class=summaryinput
+                                                                      style="WIDTH: 60px" value=409床></INPUT>
+                        </SPAN><SPAN class=summaryspan contentEditable=false>
+                            <LABLE for="SummaryPNumber">住院号:</LABLE><INPUT id=SummaryPNumber class=summaryinput
+                                                                           style="WIDTH: 80px" value=20203564></INPUT>
+                        </SPAN>
+                    </TD>
+                </TR>
+            </THEAD>
+            <TBODY>
+                <TR>
+                    <TD id=RecordTimeContainer class=content1 colSpan=8>
+                        <SPAN class=basespan contentEditable=false>
+                            <LABLE for="InputTime">记录时间:</LABLE><INPUT id=InputTime class=baseinput style="WIDTH: 180px"
+                                                                       value=如果我热狗></INPUT>
+                        </SPAN>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD id=ContentBingChengLu class=content1 colSpan=8></TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+                <TR>
+                    <TD colSpan=8>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=left>
+                                2024-08-27
+                                19:41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日常病程：
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体; TEXT-ALIGN: justify; TEXT-JUSTIFY: inter-ideograph; LINE-HEIGHT: 1.8"
+                               align=left>
+                                &nbsp;&nbsp;&nbsp;&nbsp;今查房，患者一般情况可，未诉特殊不适。查体：体温:36.5℃&nbsp;&nbsp;脉搏:80次/分&nbsp;&nbsp;呼吸:18次/分&nbsp;&nbsp;血压:120/80mmHg&nbsp;&nbsp;心肺听诊无异常，腹平软，下腹正中压痛(-)，反跳痛(-)，双下肢无浮肿，全身浅表淋巴结未及肿大。
+                            </P>
+                        </DIV>
+                        <DIV>
+                            <P style="FONT-SIZE: 16px; FONT-FAMILY: 宋体" align=right>医师签名:　　　　管理员</P>
+                        </DIV>
+                    </TD>
+                </TR>
+            </TBODY>
+        </TABLE>
+    </div>
+</body>
+</html>
