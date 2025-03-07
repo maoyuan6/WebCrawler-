@@ -69,6 +69,24 @@ namespace WindowsFormsApp1
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.roundedButton4 = new RoundedButton();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.roundedButton5 = new RoundedButton();
+            this.label24 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.roundedButton6 = new RoundedButton();
+            this.label26 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -81,6 +99,12 @@ namespace WindowsFormsApp1
             this.panel4.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,7 +114,7 @@ namespace WindowsFormsApp1
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(944, 650);
+            this.panel1.Size = new System.Drawing.Size(1443, 824);
             this.panel1.TabIndex = 0;
             // 
             // panel3
@@ -99,7 +123,7 @@ namespace WindowsFormsApp1
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(293, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(651, 650);
+            this.panel3.Size = new System.Drawing.Size(1150, 824);
             this.panel3.TabIndex = 1;
             // 
             // panel2
@@ -110,11 +134,13 @@ namespace WindowsFormsApp1
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(293, 650);
+            this.panel2.Size = new System.Drawing.Size(293, 824);
             this.panel2.TabIndex = 0;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.groupBox7);
+            this.panel5.Controls.Add(this.groupBox5);
             this.panel5.Controls.Add(this.groupBox4);
             this.panel5.Controls.Add(this.groupBox3);
             this.panel5.Controls.Add(this.groupBox2);
@@ -122,7 +148,7 @@ namespace WindowsFormsApp1
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 75);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(293, 575);
+            this.panel5.Size = new System.Drawing.Size(293, 749);
             this.panel5.TabIndex = 1;
             // 
             // groupBox3
@@ -142,7 +168,7 @@ namespace WindowsFormsApp1
             this.label10.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label10.Location = new System.Drawing.Point(45, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 24);
+            this.label10.Size = new System.Drawing.Size(47, 19);
             this.label10.TabIndex = 13;
             this.label10.Text = "主诉";
             // 
@@ -408,6 +434,12 @@ namespace WindowsFormsApp1
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.label16);
@@ -417,7 +449,7 @@ namespace WindowsFormsApp1
             this.groupBox4.Controls.Add(this.pictureBox4);
             this.groupBox4.Location = new System.Drawing.Point(-1, 334);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(294, 111);
+            this.groupBox4.Size = new System.Drawing.Size(294, 187);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             // 
@@ -427,7 +459,7 @@ namespace WindowsFormsApp1
             this.label12.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label12.Location = new System.Drawing.Point(13, 60);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(83, 24);
+            this.label12.Size = new System.Drawing.Size(66, 19);
             this.label12.TabIndex = 13;
             this.label12.Text = "处方数";
             // 
@@ -465,7 +497,7 @@ namespace WindowsFormsApp1
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label15.ForeColor = System.Drawing.Color.SandyBrown;
-            this.label15.Location = new System.Drawing.Point(169, 60);
+            this.label15.Location = new System.Drawing.Point(150, 60);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(19, 19);
             this.label15.TabIndex = 16;
@@ -477,26 +509,232 @@ namespace WindowsFormsApp1
             this.label16.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label16.Location = new System.Drawing.Point(108, 60);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 19);
+            this.label16.Size = new System.Drawing.Size(47, 19);
             this.label16.TabIndex = 15;
-            this.label16.Text = "处方数";
+            this.label16.Text = "合计";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label17.ForeColor = System.Drawing.Color.SandyBrown;
-            this.label17.Location = new System.Drawing.Point(183, 60);
+            this.label17.Location = new System.Drawing.Point(164, 60);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(19, 19);
             this.label17.TabIndex = 17;
             this.label17.Text = "0";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.Color.SandyBrown;
+            this.label18.Location = new System.Drawing.Point(88, 107);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 19);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label19.ForeColor = System.Drawing.Color.SandyBrown;
+            this.label19.Location = new System.Drawing.Point(74, 107);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(19, 19);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "¥";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.Location = new System.Drawing.Point(10, 107);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(66, 19);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "卡余额";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.ForeColor = System.Drawing.Color.SandyBrown;
+            this.label21.Location = new System.Drawing.Point(111, 146);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(19, 19);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.ForeColor = System.Drawing.Color.SandyBrown;
+            this.label22.Location = new System.Drawing.Point(97, 146);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(19, 19);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "¥";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label23.Location = new System.Drawing.Point(12, 146);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(85, 19);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "预计剩余";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.groupBox6);
+            this.groupBox5.Controls.Add(this.roundedButton4);
+            this.groupBox5.Controls.Add(this.label25);
+            this.groupBox5.Controls.Add(this.pictureBox5);
+            this.groupBox5.Location = new System.Drawing.Point(-1, 514);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(294, 86);
+            this.groupBox5.TabIndex = 15;
+            this.groupBox5.TabStop = false;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label25.Location = new System.Drawing.Point(44, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(56, 22);
+            this.label25.TabIndex = 12;
+            this.label25.Text = "诊断";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(6, 15);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            // 
+            // roundedButton4
+            // 
+            this.roundedButton4.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton4.BorderSize = 1;
+            this.roundedButton4.CornerRadius = 8;
+            this.roundedButton4.FlatAppearance.BorderSize = 0;
+            this.roundedButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton4.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton4.Name = "roundedButton4";
+            this.roundedButton4.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton4.TabIndex = 14;
+            this.roundedButton4.Text = "既往";
+            this.roundedButton4.UseVisualStyleBackColor = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.roundedButton5);
+            this.groupBox6.Controls.Add(this.label24);
+            this.groupBox6.Controls.Add(this.pictureBox6);
+            this.groupBox6.Location = new System.Drawing.Point(0, 4);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(294, 86);
+            this.groupBox6.TabIndex = 16;
+            this.groupBox6.TabStop = false;
+            // 
+            // roundedButton5
+            // 
+            this.roundedButton5.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton5.BorderSize = 1;
+            this.roundedButton5.CornerRadius = 8;
+            this.roundedButton5.FlatAppearance.BorderSize = 0;
+            this.roundedButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton5.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton5.Name = "roundedButton5";
+            this.roundedButton5.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton5.TabIndex = 14;
+            this.roundedButton5.Text = "查看";
+            this.roundedButton5.UseVisualStyleBackColor = false;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label24.Location = new System.Drawing.Point(44, 21);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(128, 28);
+            this.label24.TabIndex = 12;
+            this.label24.Text = "医技报告";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(6, 15);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox6.TabIndex = 12;
+            this.pictureBox6.TabStop = false;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.roundedButton6);
+            this.groupBox7.Controls.Add(this.label26);
+            this.groupBox7.Controls.Add(this.pictureBox7);
+            this.groupBox7.Location = new System.Drawing.Point(-1, 599);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(294, 86);
+            this.groupBox7.TabIndex = 17;
+            this.groupBox7.TabStop = false;
+            // 
+            // roundedButton6
+            // 
+            this.roundedButton6.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton6.BorderSize = 1;
+            this.roundedButton6.CornerRadius = 8;
+            this.roundedButton6.FlatAppearance.BorderSize = 0;
+            this.roundedButton6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton6.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton6.Name = "roundedButton6";
+            this.roundedButton6.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton6.TabIndex = 14;
+            this.roundedButton6.Text = "管理";
+            this.roundedButton6.UseVisualStyleBackColor = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("宋体", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label26.Location = new System.Drawing.Point(44, 21);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(128, 28);
+            this.label26.TabIndex = 12;
+            this.label26.Text = "过敏信息";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(6, 15);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(32, 29);
+            this.pictureBox7.TabIndex = 12;
+            this.pictureBox7.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 650);
+            this.ClientSize = new System.Drawing.Size(1443, 824);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -517,6 +755,15 @@ namespace WindowsFormsApp1
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -560,5 +807,23 @@ namespace WindowsFormsApp1
         private Label label16;
         private Label label14;
         private Label label17;
+        private Label label21;
+        private Label label22;
+        private Label label23;
+        private Label label18;
+        private Label label19;
+        private Label label20;
+        private GroupBox groupBox7;
+        private RoundedButton roundedButton6;
+        private Label label26;
+        private PictureBox pictureBox7;
+        private GroupBox groupBox5;
+        private GroupBox groupBox6;
+        private RoundedButton roundedButton5;
+        private Label label24;
+        private PictureBox pictureBox6;
+        private RoundedButton roundedButton4;
+        private Label label25;
+        private PictureBox pictureBox5;
     }
 }
