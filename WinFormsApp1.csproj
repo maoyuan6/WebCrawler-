@@ -8,6 +8,15 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="ConsoleApp1\**" />
+	  <Compile Remove="WindowsFormsApp1\**" />
+	  <EmbeddedResource Remove="ConsoleApp1\**" />
+	  <EmbeddedResource Remove="WindowsFormsApp1\**" />
+	  <None Remove="ConsoleApp1\**" />
+	  <None Remove="WindowsFormsApp1\**" />
+	</ItemGroup>
+
 	<ItemGroup> 
 		<PackageReference Include="DinkToPdf" Version="1.0.8" />
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
