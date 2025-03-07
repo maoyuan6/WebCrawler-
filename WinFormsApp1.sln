@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp1.csproj", "{F6933E61-E3F0-404B-BE70-D359FEB1662D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "..\ConsoleApp1\ConsoleApp1.csproj", "{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{C444C508-5F5A-43DD-80DF-3689715F5DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "..\WindowsFormsApp1\WindowsFormsApp1.csproj", "{C444C508-5F5A-43DD-80DF-3689715F5DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +25,6 @@ Global
 		{F6933E61-E3F0-404B-BE70-D359FEB1662D}.Release_VS2010|Any CPU.Build.0 = Release|Any CPU
 		{F6933E61-E3F0-404B-BE70-D359FEB1662D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6933E61-E3F0-404B-BE70-D359FEB1662D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Debug_VS2010|Any CPU.ActiveCfg = Debug|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Debug_VS2010|Any CPU.Build.0 = Debug|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Release_VS2010|Any CPU.ActiveCfg = Release|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Release_VS2010|Any CPU.Build.0 = Release|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1584B15B-2C4F-4FFE-B875-00D1D331EDB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Debug_VS2010|Any CPU.ActiveCfg = Debug|Any CPU
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Debug_VS2010|Any CPU.Build.0 = Debug|Any CPU
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -41,6 +33,14 @@ Global
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Release_VS2010|Any CPU.Build.0 = Release|Any CPU
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C444C508-5F5A-43DD-80DF-3689715F5DCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Debug_VS2010|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Debug_VS2010|Any CPU.Build.0 = Debug|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Release_VS2010|Any CPU.ActiveCfg = Release|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Release_VS2010|Any CPU.Build.0 = Release|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69E43CC9-AD4E-476B-BEEB-419930AA3FCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
