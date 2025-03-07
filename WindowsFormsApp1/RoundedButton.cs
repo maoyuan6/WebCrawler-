@@ -8,6 +8,8 @@ public class RoundedButton : Button
     private int _cornerRadius = 8; // 圆角大小
     private int _borderSize = 1;   // 边框厚度
     private Color _borderColor = Color.FromArgb(90, 196, 248); // 边框颜色
+    private Color _defaultForeColor;
+    private Color _defaultBackColor;
 
     public int CornerRadius
     {
@@ -35,7 +37,14 @@ public class RoundedButton : Button
         this.FlatAppearance.MouseOverBackColor = Color.Transparent;
         this.BackColor = Color.Transparent;
         this.ForeColor = Color.FromArgb(90, 196, 248);
+        _defaultForeColor = this.ForeColor;
+        _defaultBackColor = this.BackColor;
+
         this.Resize += (s, e) => SetRoundedRegion();
+
+        // 处理按下和松开事件
+        this.MouseDown += (s, e) => ApplyPressedStyle();
+        this.MouseUp += (s, e) => ApplyReleasedStyle();
     }
 
     private void SetRoundedRegion()
@@ -75,5 +84,19 @@ public class RoundedButton : Button
         path.CloseFigure();
 
         return path;
+    }
+
+    private void ApplyPressedStyle()
+    {
+        this.ForeColor = Color.FromArgb(50, 150, 200); // 改变前景色
+        this.BackColor = Color.FromArgb(230, 230, 230); // 轻微变暗
+        this.Invalidate(); // 重新绘制
+    }
+
+    private void ApplyReleasedStyle()
+    {
+        this.ForeColor = _defaultForeColor;
+        this.BackColor = _defaultBackColor;
+        this.Invalidate();
     }
 }
