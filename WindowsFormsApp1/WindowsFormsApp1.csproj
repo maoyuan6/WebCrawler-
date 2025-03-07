@@ -332,7 +332,10 @@
     <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoundedButton.cs">
+    <Compile Include="Round\RoundedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Round\RoundedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="TestData.cs" />
@@ -860,5 +863,6 @@
     <Content Include="tool\WinnerSoft.Windows.dll" />
     <Content Include="tool\WinnerSoft.Windows.pdb" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
