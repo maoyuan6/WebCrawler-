@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,20 @@ namespace WindowsFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             var a = _mzcontent.myWriterControl.XMLText;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择文件";
+            openFileDialog.Filter = "所有文件 (*.*)|*.*"; // 过滤文件类型
+            openFileDialog.Multiselect = false; // 是否允许多选
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName; // 获取文件的绝对路径 
+                string content = File.ReadAllText(filePath);
+                _mzcontent.SetMyWriterControlContent(content);
+            }
         }
     }
 }
