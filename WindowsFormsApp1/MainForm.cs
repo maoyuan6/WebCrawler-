@@ -51,14 +51,20 @@ namespace WindowsFormsApp1
         }
 
         private void MainForm_Load(object sender, EventArgs e)
-        { 
- 
+        {
+
         }
 
         private void roundedButton3_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
             form1.ShowDialog();
+        }
+
+        private void roundedButton5_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
         }
     }
 }

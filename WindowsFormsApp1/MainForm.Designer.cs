@@ -51,19 +51,15 @@ namespace WindowsFormsApp1
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.myTextBox1 = new TextBoxDemo.MyTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.roundedButton6 = new RoundedButton();
             this.label26 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.roundedButton5 = new RoundedButton();
             this.label24 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.roundedButton4 = new RoundedButton();
             this.label25 = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -86,7 +82,6 @@ namespace WindowsFormsApp1
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.roundedButton3 = new RoundedButton();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -100,10 +95,15 @@ namespace WindowsFormsApp1
             this.label2 = new System.Windows.Forms.Label();
             this.sex = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.roundedButton2 = new RoundedButton();
             this.name = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.myTextBox1 = new TextBoxDemo.MyTextBox();
+            this.roundedButton6 = new RoundedButton();
+            this.roundedButton5 = new RoundedButton();
+            this.roundedButton4 = new RoundedButton();
+            this.roundedButton3 = new RoundedButton();
+            this.roundedButton2 = new RoundedButton();
             this.roundedButton1 = new RoundedButton();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -300,25 +300,6 @@ namespace WindowsFormsApp1
             this.dateTimePicker1.Size = new System.Drawing.Size(265, 25);
             this.dateTimePicker1.TabIndex = 1;
             // 
-            // myTextBox1
-            // 
-            this.myTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
-            this.myTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.myTextBox1.IsMiddle = false;
-            this.myTextBox1.LeftMargin = 16;
-            this.myTextBox1.Location = new System.Drawing.Point(28, 15);
-            this.myTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.myTextBox1.MaxLength = 32767;
-            this.myTextBox1.Name = "myTextBox1";
-            this.myTextBox1.ReadOnly = false;
-            this.myTextBox1.RightMargin = 20;
-            this.myTextBox1.SelectedText = "";
-            this.myTextBox1.SelectionLength = 0;
-            this.myTextBox1.SelectionStart = 0;
-            this.myTextBox1.Size = new System.Drawing.Size(267, 40);
-            this.myTextBox1.TabIndex = 0;
-            this.myTextBox1.Text = "myTextBox1";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -358,25 +339,6 @@ namespace WindowsFormsApp1
             this.groupBox7.Size = new System.Drawing.Size(293, 86);
             this.groupBox7.TabIndex = 17;
             this.groupBox7.TabStop = false;
-            // 
-            // roundedButton6
-            // 
-            this.roundedButton6.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton6.BorderSize = 1;
-            this.roundedButton6.CornerRadius = 8;
-            this.roundedButton6.FlatAppearance.BorderSize = 0;
-            this.roundedButton6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton6.Location = new System.Drawing.Point(183, 19);
-            this.roundedButton6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundedButton6.Name = "roundedButton6";
-            this.roundedButton6.Size = new System.Drawing.Size(103, 31);
-            this.roundedButton6.TabIndex = 14;
-            this.roundedButton6.Text = "管理";
-            this.roundedButton6.UseVisualStyleBackColor = false;
             // 
             // label26
             // 
@@ -424,25 +386,6 @@ namespace WindowsFormsApp1
             this.groupBox6.TabIndex = 16;
             this.groupBox6.TabStop = false;
             // 
-            // roundedButton5
-            // 
-            this.roundedButton5.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton5.BorderSize = 1;
-            this.roundedButton5.CornerRadius = 8;
-            this.roundedButton5.FlatAppearance.BorderSize = 0;
-            this.roundedButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton5.Location = new System.Drawing.Point(183, 19);
-            this.roundedButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundedButton5.Name = "roundedButton5";
-            this.roundedButton5.Size = new System.Drawing.Size(103, 31);
-            this.roundedButton5.TabIndex = 14;
-            this.roundedButton5.Text = "查看";
-            this.roundedButton5.UseVisualStyleBackColor = false;
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -461,25 +404,6 @@ namespace WindowsFormsApp1
             this.pictureBox6.Size = new System.Drawing.Size(32, 29);
             this.pictureBox6.TabIndex = 12;
             this.pictureBox6.TabStop = false;
-            // 
-            // roundedButton4
-            // 
-            this.roundedButton4.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton4.BorderSize = 1;
-            this.roundedButton4.CornerRadius = 8;
-            this.roundedButton4.FlatAppearance.BorderSize = 0;
-            this.roundedButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton4.Location = new System.Drawing.Point(183, 19);
-            this.roundedButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundedButton4.Name = "roundedButton4";
-            this.roundedButton4.Size = new System.Drawing.Size(103, 31);
-            this.roundedButton4.TabIndex = 14;
-            this.roundedButton4.Text = "既往";
-            this.roundedButton4.UseVisualStyleBackColor = false;
             // 
             // label25
             // 
@@ -725,26 +649,6 @@ namespace WindowsFormsApp1
             this.label9.TabIndex = 13;
             this.label9.Text = "主诉";
             // 
-            // roundedButton3
-            // 
-            this.roundedButton3.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton3.BorderSize = 1;
-            this.roundedButton3.CornerRadius = 8;
-            this.roundedButton3.FlatAppearance.BorderSize = 0;
-            this.roundedButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton3.Location = new System.Drawing.Point(183, 15);
-            this.roundedButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundedButton3.Name = "roundedButton3";
-            this.roundedButton3.Size = new System.Drawing.Size(103, 31);
-            this.roundedButton3.TabIndex = 12;
-            this.roundedButton3.Text = "既往";
-            this.roundedButton3.UseVisualStyleBackColor = false;
-            this.roundedButton3.Click += new System.EventHandler(this.roundedButton3_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -887,25 +791,6 @@ namespace WindowsFormsApp1
             this.label1.TabIndex = 2;
             this.label1.Text = "性别：";
             // 
-            // roundedButton2
-            // 
-            this.roundedButton2.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton2.BorderSize = 1;
-            this.roundedButton2.CornerRadius = 8;
-            this.roundedButton2.FlatAppearance.BorderSize = 0;
-            this.roundedButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.roundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
-            this.roundedButton2.Location = new System.Drawing.Point(183, 12);
-            this.roundedButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.roundedButton2.Name = "roundedButton2";
-            this.roundedButton2.Size = new System.Drawing.Size(103, 31);
-            this.roundedButton2.TabIndex = 1;
-            this.roundedButton2.Text = "结束就诊";
-            this.roundedButton2.UseVisualStyleBackColor = false;
-            // 
             // name
             // 
             this.name.AutoSize = true;
@@ -934,6 +819,122 @@ namespace WindowsFormsApp1
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(293, 75);
             this.panel4.TabIndex = 0;
+            // 
+            // myTextBox1
+            // 
+            this.myTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.myTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
+            this.myTextBox1.IsMiddle = false;
+            this.myTextBox1.LeftMargin = 16;
+            this.myTextBox1.Location = new System.Drawing.Point(28, 15);
+            this.myTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.myTextBox1.MaxLength = 32767;
+            this.myTextBox1.Name = "myTextBox1";
+            this.myTextBox1.ReadOnly = false;
+            this.myTextBox1.RightMargin = 20;
+            this.myTextBox1.SelectedText = "";
+            this.myTextBox1.SelectionLength = 0;
+            this.myTextBox1.SelectionStart = 0;
+            this.myTextBox1.Size = new System.Drawing.Size(267, 40);
+            this.myTextBox1.TabIndex = 0;
+            this.myTextBox1.Text = "myTextBox1";
+            // 
+            // roundedButton6
+            // 
+            this.roundedButton6.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton6.BorderSize = 1;
+            this.roundedButton6.CornerRadius = 8;
+            this.roundedButton6.FlatAppearance.BorderSize = 0;
+            this.roundedButton6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton6.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundedButton6.Name = "roundedButton6";
+            this.roundedButton6.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton6.TabIndex = 14;
+            this.roundedButton6.Text = "管理";
+            this.roundedButton6.UseVisualStyleBackColor = false;
+            // 
+            // roundedButton5
+            // 
+            this.roundedButton5.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton5.BorderSize = 1;
+            this.roundedButton5.CornerRadius = 8;
+            this.roundedButton5.FlatAppearance.BorderSize = 0;
+            this.roundedButton5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton5.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundedButton5.Name = "roundedButton5";
+            this.roundedButton5.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton5.TabIndex = 14;
+            this.roundedButton5.Text = "查看";
+            this.roundedButton5.UseVisualStyleBackColor = false;
+            this.roundedButton5.Click += new System.EventHandler(this.roundedButton5_Click);
+            // 
+            // roundedButton4
+            // 
+            this.roundedButton4.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton4.BorderSize = 1;
+            this.roundedButton4.CornerRadius = 8;
+            this.roundedButton4.FlatAppearance.BorderSize = 0;
+            this.roundedButton4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton4.Location = new System.Drawing.Point(183, 19);
+            this.roundedButton4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundedButton4.Name = "roundedButton4";
+            this.roundedButton4.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton4.TabIndex = 14;
+            this.roundedButton4.Text = "既往";
+            this.roundedButton4.UseVisualStyleBackColor = false;
+            // 
+            // roundedButton3
+            // 
+            this.roundedButton3.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton3.BorderSize = 1;
+            this.roundedButton3.CornerRadius = 8;
+            this.roundedButton3.FlatAppearance.BorderSize = 0;
+            this.roundedButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton3.Location = new System.Drawing.Point(183, 15);
+            this.roundedButton3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundedButton3.Name = "roundedButton3";
+            this.roundedButton3.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton3.TabIndex = 12;
+            this.roundedButton3.Text = "既往";
+            this.roundedButton3.UseVisualStyleBackColor = false;
+            this.roundedButton3.Click += new System.EventHandler(this.roundedButton3_Click);
+            // 
+            // roundedButton2
+            // 
+            this.roundedButton2.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton2.BorderSize = 1;
+            this.roundedButton2.CornerRadius = 8;
+            this.roundedButton2.FlatAppearance.BorderSize = 0;
+            this.roundedButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.roundedButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(196)))), ((int)(((byte)(248)))));
+            this.roundedButton2.Location = new System.Drawing.Point(183, 12);
+            this.roundedButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.roundedButton2.Name = "roundedButton2";
+            this.roundedButton2.Size = new System.Drawing.Size(103, 31);
+            this.roundedButton2.TabIndex = 1;
+            this.roundedButton2.Text = "结束就诊";
+            this.roundedButton2.UseVisualStyleBackColor = false;
             // 
             // roundedButton1
             // 
