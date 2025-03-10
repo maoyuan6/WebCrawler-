@@ -332,6 +332,12 @@
     <Compile Include="Patient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Round\MyTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Round\MyTextBox.Designer.cs">
+      <DependentUpon>MyTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Round\RoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
