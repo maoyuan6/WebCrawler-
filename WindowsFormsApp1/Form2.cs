@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraGrid.EditForm.Helpers;
 
 namespace WindowsFormsApp1
 {
@@ -53,6 +54,8 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
+            TemplateSelect template = new TemplateSelect();
+            template.ShowDialog();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "选择文件";
             openFileDialog.Filter = "所有文件 (*.*)|*.*"; // 过滤文件类型
@@ -61,7 +64,7 @@ namespace WindowsFormsApp1
             {
                 string filePath = openFileDialog.FileName; // 获取文件的绝对路径 
                 string content = File.ReadAllText(filePath);
-                _mzcontent.SetMyWriterControlContent(content);
+                _mzcontent.SetMyWriterControlContent(content); 
             }
         }
     }
