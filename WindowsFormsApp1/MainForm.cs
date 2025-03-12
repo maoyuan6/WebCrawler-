@@ -66,5 +66,11 @@ namespace WindowsFormsApp1
             Form2 form2 = new Form2();
             form2.ShowDialog();
         }
+
+        private void roundedButton6_Click(object sender, EventArgs e)
+        {
+            TemplateSet temp = new TemplateSet();
+            temp.ShowDialog();
+        }
     }
 }

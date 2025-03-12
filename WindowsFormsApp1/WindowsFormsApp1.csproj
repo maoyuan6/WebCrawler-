@@ -400,6 +400,12 @@
     <Compile Include="TemplateSelect.Designer.cs">
       <DependentUpon>TemplateSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="TemplateSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemplateSet.Designer.cs">
+      <DependentUpon>TemplateSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestData.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -453,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TemplateSelect.resx">
       <DependentUpon>TemplateSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateSet.resx">
+      <DependentUpon>TemplateSet.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
