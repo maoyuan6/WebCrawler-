@@ -228,6 +228,14 @@
     <Reference Include="HIS.Employee.Interface">
       <HintPath>tool\HIS.Employee.Interface.dll</HintPath>
     </Reference>
+    <Reference Include="HPSoft.Common, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\HPSoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="HPSoft.Common.Ctrs, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\HPSoft.Common.Ctrs.dll</HintPath>
+    </Reference>
     <Reference Include="HPSoft.Core">
       <HintPath>tool\HPSoft.Core.dll</HintPath>
     </Reference>
@@ -271,6 +279,10 @@
     <Reference Include="WinnerHIS.Common">
       <HintPath>tool\WinnerHIS.Common.dll</HintPath>
     </Reference>
+    <Reference Include="WinnerMain.System, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerMain.System.dll</HintPath>
+    </Reference>
     <Reference Include="WinnerSoft.Data">
       <HintPath>tool\WinnerSoft.Data.dll</HintPath>
     </Reference>
@@ -306,6 +318,18 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MZ\CaseFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MZ\CaseFrm.designer.cs">
+      <DependentUpon>CaseFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MZ\CaseTemplete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MZ\CaseTemplete.Designer.cs">
+      <DependentUpon>CaseTemplete.cs</DependentUpon>
     </Compile>
     <Compile Include="MZ\FootEdit.cs">
       <SubType>Form</SubType>
@@ -386,6 +410,12 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MZ\CaseFrm.resx">
+      <DependentUpon>CaseFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MZ\CaseTemplete.resx">
+      <DependentUpon>CaseTemplete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MZ\FootEdit.resx">
       <DependentUpon>FootEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -413,6 +443,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Round\TabControlWithCloseButton.resx">
       <DependentUpon>TabControlWithCloseButton.cs</DependentUpon>
@@ -440,6 +471,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sign.bmp" />
     <Content Include="tool\Clinic.Case.Business.dll" />
     <Content Include="tool\Clinic.Case.Business.pdb" />
     <Content Include="tool\Clinic.Case.Interface.dll" />
@@ -892,6 +924,10 @@
     <Content Include="tool\DevExpress.XtraWizard.v20.2.xml" />
     <Content Include="tool\HIS.Employee.Interface.dll" />
     <Content Include="tool\HIS.Employee.Interface.pdb" />
+    <Content Include="tool\HPSoft.Common.Ctrs.dll" />
+    <Content Include="tool\HPSoft.Common.Ctrs.pdb" />
+    <Content Include="tool\HPSoft.Common.dll" />
+    <Content Include="tool\HPSoft.Common.pdb" />
     <Content Include="tool\HPSoft.Core.dll" />
     <Content Include="tool\HPSoft.EmrEditor.dll" />
     <Content Include="tool\HPSoft.EmrEditor.pdb" />
@@ -903,6 +939,7 @@
     <Content Include="tool\Winner.Employee.Interface.pdb" />
     <Content Include="tool\WinnerHIS.Common.dll" />
     <Content Include="tool\WinnerHIS.Common.pdb" />
+    <Content Include="tool\WinnerMain.System.dll" />
     <Content Include="tool\WinnerSoft.Data.dll" />
     <Content Include="tool\WinnerSoft.Data.pdb" />
     <Content Include="tool\WinnerSoft.Object.dll" />
