@@ -212,5 +212,10 @@ namespace Clinic.Case.Business
             cmbDept.Properties.ReadOnly = false;  // 确保控件不是只读
 
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
