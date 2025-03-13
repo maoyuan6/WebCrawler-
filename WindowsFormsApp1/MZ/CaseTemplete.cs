@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
+using WindowsFormsApp1.Entity.EMR;
 using Clinic.Case.Interface;
 using DCSoft.Writer.Dom;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
+using EMR;
 using HPSoft.FrameWork;
 using HPSoft.FrameWork.WinForm;
 using WinnerHIS.Common;
 using WinnerHIS.Integral.Personnel.DAL.Interface;
+using WinnerSoft.Collections;
 using WinnerSoft.Data.Access;
 
 namespace Clinic.Case.Business
@@ -24,7 +28,8 @@ namespace Clinic.Case.Business
             caseFrm.Dock = DockStyle.Fill;
             this.panelMain.Controls.Add(caseFrm);
         }
-
+        DapperHelper EMRContext = new DapperHelper("EMR");
+        DapperHelper BaseDataContext = new DapperHelper("BaseData");
         #region 重写 ExplorerControl 属性/方法
 
         /// <summary>
@@ -98,42 +103,45 @@ namespace Clinic.Case.Business
             return plg;
         }
         #endregion
-        IDICT_CATALOGList dictList;
-        IDepartmentList deptlist;
-        IEMRTEMPLETList tempList;
+        List<DictCatalog> dictList;
+        List<Department> deptlist;
+        List<EmrTemplet> tempList;
         int tempType = 0;
         private void Initialize()
         {
-            dictList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateDICT_CATALOGList();
-            dictList.Session = this.Session;
-            dictList.GetAllList();
-            deptlist = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartmentList();
-            deptlist.Session = this.Session;
+            var DICT_CATALOGsql = "select * from  [EMR].[DICT_CATALOG]";
+            dictList = EMRContext.Query<DictCatalog>(DICT_CATALOGsql).ToList();
+
+            //dictList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateDICT_CATALOGList();
+            //dictList.Session = this.Session;
+            //dictList.GetAllList();
+            //deptlist = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartmentList();
+            //deptlist.Session = this.Session;
 
             if ((int)ContextHelper.Employee.Type == 8)
             {
-                deptlist.GetCMClinicDept();
+                var Departmentsql = "select * from Department";
+                deptlist = BaseDataContext.Query<Department>(Departmentsql).ToList();
                 tempType = 0;
             }
             else
             {
-                string sql = "select * from BaseData.dbo.VW_EMPLOYEEALL where EMPID = "+WinnerHIS.Common.ContextHelper.Employee.EmployeeID;
-                IConnection dbcn = WinnerHIS.Common.ContextHelper.Context.Container.GetComponentInstances(typeof(IConnection))[0] as IConnection;
-                System.Data.DataTable table = (System.Data.DataTable)dbcn.CreateAccessor().Query(sql.ToString(), WinnerSoft.Data.Access.ResultType.DataTable);
+                string sql = "select * from BaseData.dbo.VW_EMPLOYEEALL where EMPID = " + WinnerHIS.Common.ContextHelper.Employee.EmployeeID;
+                //IConnection dbcn = WinnerHIS.Common.ContextHelper.Context.Container.GetComponentInstances(typeof(IConnection))[0] as IConnection;
+                System.Data.DataTable table = BaseDataContext.QueryToDataTable(sql);
+                // System.Data.DataTable table = (System.Data.DataTable)dbcn.CreateAccessor().Query(sql.ToString(), WinnerSoft.Data.Access.ResultType.DataTable);
                 foreach (DataRow dataRow in table.Rows)
                 {
-                    IDepartment dept = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartment();
-                    dept.DeptID = Convert.ToInt32(dataRow["DEPTID"]);
+                    Department dept = new Department();
+                    dept.Id = Convert.ToInt32(dataRow["DEPTID"]);
                     dept.Name = WinnerHIS.Common.DataConvertHelper.GetDeptName(Convert.ToInt32(dataRow["DEPTID"]));
-                    deptlist.AddEntity(dept);
+                    deptlist.Add(dept);
                 }
                 tempType = 1;
             }
 
-
-            tempList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreataEMRTEMPLETList();
-            tempList.Session = this.Session;
-            tempList.GetAllList();
+            var EmrTempletSql = "select * from [EMR].[EMRTEMPLET]";
+            tempList = EMRContext.Query<EmrTemplet>(EmrTempletSql).ToList();
 
             LoadTreeData(tempType);
             LoadTreeBasicInfo();
@@ -143,10 +151,17 @@ namespace Clinic.Case.Business
 
         private void LoadTreeSymbols()
         {
-            ISYMBOLSList symList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateSYMBOLSList();
-            symList.Session = this.Session;
-            symList.Query();
-            foreach (ISYMBOLS item in symList.Rows)
+
+            var SymbolSql = "select * from [EMR].[SYMBOLS]";
+
+
+            List<Symbol> symList = EMRContext.Query<Symbol>(SymbolSql).ToList();
+
+
+            //ISYMBOLSList symList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateSYMBOLSList();
+            //symList.Session = this.Session;
+            //symList.Query();
+            foreach (Symbol item in symList)
             {
                 TreeListNode node = treeListSymbol.AppendNode(null, -1);
                 node.SetValue("ID", item.ID);
@@ -161,10 +176,13 @@ namespace Clinic.Case.Business
         }
         void LoadTreeBasicInfo()
         {
-            IInputInfoList infoList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateInputInfoList();
-            infoList.Session = this.Session;
-            infoList.Query();
-            foreach (IInputInfo item in infoList.Rows)
+            var InputInfoSql = "select* from [dbo].[InputInfo]";
+            var infoList = EMRContext.Query<InputInfo>(InputInfoSql).ToList();
+
+            //IInputInfoList infoList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateInputInfoList();
+            //infoList.Session = this.Session;
+            //infoList.Query();
+            foreach (IInputInfo item in infoList)
             {
                 TreeListNode node = treeListBasicInfo.AppendNode(null, -1);
                 node.SetValue("ID", item.FileName);
@@ -183,7 +201,7 @@ namespace Clinic.Case.Business
             treeInfo.Nodes.Clear();
             TreeListNode titleNode = treeInfo.AppendNode(null, -1);
             titleNode.SetValue("ID", 0);
-            if (attr==0)
+            if (attr == 0)
             {
                 titleNode.SetValue("NAME", "科室模板");
                 titleNode.ImageIndex = 4;
@@ -197,25 +215,25 @@ namespace Clinic.Case.Business
                 treeInfo.Tag = 1;
                 caseFrm.attr = 1;
             }
-            foreach (IDepartment dept in deptlist.Rows)
+            foreach (Department dept in deptlist)
             {
                 TreeListNode deptNode = treeInfo.AppendNode(null, titleNode);
-                deptNode.SetValue("ID", dept.DeptID);
+                deptNode.SetValue("ID", dept.Id);
                 deptNode.SetValue("NAME", dept.Name);
                 deptNode.ImageIndex = 0;
-                deptNode.Tag = dept.DeptID;
+                deptNode.Tag = dept.Id;
 
-                foreach (IDICT_CATALOG dict in dictList.Rows)
+                foreach (DictCatalog dict in dictList)
                 {
                     TreeListNode dictNode = treeInfo.AppendNode(null, deptNode);
-                    dictNode.SetValue("ID", dict.CCODE);
-                    dictNode.SetValue("NAME", dict.CNAME);
+                    dictNode.SetValue("ID", dict.CCode);
+                    dictNode.SetValue("NAME", dict.CName);
                     dictNode.ImageIndex = 1;
                     dictNode.SelectImageIndex = 7;
-                    dictNode.Tag = dict.CCODE;
-                    foreach (IEMRTEMPLET templet in tempList.Rows)
+                    dictNode.Tag = dict.CCode;
+                    foreach (EmrTemplet templet in tempList)
                     {
-                        if (templet.DEPT_ID == dept.DeptID && templet.MR_CLASS == dict.CCODE&&templet.MR_ATTR==attr)
+                        if (templet.DeptId == dept.Id && templet.MrClass == dict.CCode && templet.MrAttr == attr)
                         {
                             // 取消限制
                             //if ((int)ContextHelper.Employee.Type!=8)
@@ -226,8 +244,8 @@ namespace Clinic.Case.Business
                             //    }
                             //}
                             TreeListNode tempNode = treeInfo.AppendNode(null, dictNode);
-                            tempNode.SetValue("ID", templet.CREATOR_ID);
-                            tempNode.SetValue("NAME", templet.MR_NAME);
+                            tempNode.SetValue("ID", templet.CreatorId);
+                            tempNode.SetValue("NAME", templet.MrName);
                             tempNode.ImageIndex = 2;
                             tempNode.SelectImageIndex = 3;
                             tempNode.Tag = templet;
@@ -241,19 +259,24 @@ namespace Clinic.Case.Business
 
         public void AddTreeNode(IEMRTEMPLET templet)
         {
-            tempList.AddEntity(templet);
+            //tempList.AddEntity(templet);
             LoadTreeData(templet.MR_ATTR);
+        }
+        public void AddTreeNode(EmrTemplet templet)
+        {
+            tempList.Add(templet);
+            LoadTreeData(templet.MrAttr ?? 0);
         }
         private void treeInfo_DoubleClick(object sender, EventArgs e)
         {
-            IEMRTEMPLET templet = this.treeInfo.FocusedNode.Tag as IEMRTEMPLET;
+            EmrTemplet templet = this.treeInfo.FocusedNode.Tag as EmrTemplet;
             if (templet != null)
             {
                 caseFrm.isEdit = true;
-                caseFrm.myWriterControl.XMLText = templet.XML_DOC_NEW;
-                caseFrm.MedicalCodeEditValue(templet.XYZhenDuan);
-                caseFrm.ChineseMedicineIcdEditValue(templet.ZYZhenDuan);
-                caseFrm.empTemplet = templet;
+                caseFrm.myWriterControl.XMLText = templet.XmlDocNew;
+                caseFrm.MedicalCodeEditValue(templet.XyZhenDuan);
+                caseFrm.ChineseMedicineIcdEditValue(templet.ZyZhenDuan);
+                caseFrm.newEmpTemplet = templet;
                 caseFrm.editSatus = 0;
             }
         }
@@ -281,18 +304,77 @@ namespace Clinic.Case.Business
             }
         }
 
+        public int InsertEmrTemplet(EmrTemplet emrTemplet)
+        {
+            var sql = @"INSERT INTO [EMR].[EMRTEMPLET] 
+                    (FileName, DeptId, CreatorId, CreateDateTime, LastTime, Permission, MrClass, MrCode, MrName, MrAttr, 
+                     QcCode, NewPageFlag, FileFlag, WriteTimes, Code, HospitalCode, XmlDoc, XmlDocNew, Py, Wb, IsFirstDaily, 
+                     IsShowFileName, IsYiHuanGouTong, NewPageEnd, Valid, State, Auditor, AuditDate, IsConfigPageSize, ZyZhenDuan, 
+                     XyZhenDuan)
+                    VALUES 
+                    (@FileName, @DeptId, @CreatorId, @CreateDateTime, @LastTime, @Permission, @MrClass, @MrCode, @MrName, @MrAttr, 
+                     @QcCode, @NewPageFlag, @FileFlag, @WriteTimes, @Code, @HospitalCode, @XmlDoc, @XmlDocNew, @Py, @Wb, @IsFirstDaily, 
+                     @IsShowFileName, @IsYiHuanGouTong, @NewPageEnd, @Valid, @State, @Auditor, @AuditDate, @IsConfigPageSize, @ZyZhenDuan, 
+                     @XyZhenDuan);
+                    SELECT SCOPE_IDENTITY();";
+
+            return EMRContext.Insert<int>(sql, emrTemplet);
+        }
+        /// <summary>
+        /// 更新EmrTemplet表中的数据
+        /// </summary>
+        /// <param name="emrTemplet">要更新的数据对象</param>
+        public int UpdateEmrTemplet(EmrTemplet emrTemplet)
+        {
+            var sql = @"UPDATE [EMR].[EMRTEMPLET]
+                    SET 
+                        FileName = @FileName,
+                        DeptId = @DeptId,
+                        CreatorId = @CreatorId,
+                        CreateDateTime = @CreateDateTime,
+                        LastTime = @LastTime,
+                        Permission = @Permission,
+                        MrClass = @MrClass,
+                        MrCode = @MrCode,
+                        MrName = @MrName,
+                        MrAttr = @MrAttr,
+                        QcCode = @QcCode,
+                        NewPageFlag = @NewPageFlag,
+                        FileFlag = @FileFlag,
+                        WriteTimes = @WriteTimes,
+                        Code = @Code,
+                        HospitalCode = @HospitalCode,
+                        XmlDoc = @XmlDoc,
+                        XmlDocNew = @XmlDocNew,
+                        Py = @Py,
+                        Wb = @Wb,
+                        IsFirstDaily = @IsFirstDaily,
+                        IsShowFileName = @IsShowFileName,
+                        IsYiHuanGouTong = @IsYiHuanGouTong,
+                        NewPageEnd = @NewPageEnd,
+                        Valid = @Valid,
+                        State = @State,
+                        Auditor = @Auditor,
+                        AuditDate = @AuditDate,
+                        IsConfigPageSize = @IsConfigPageSize,
+                        ZyZhenDuan = @ZyZhenDuan,
+                        XyZhenDuan = @XyZhenDuan
+                    WHERE TempletId = @TempletId";
+
+            return EMRContext.Execute(sql, emrTemplet);
+        }
         private void btnModeUp_Click(object sender, EventArgs e)
         {
             TreeListNode node = this.treeInfo.FocusedNode;
-            if (node.Tag is IEMRTEMPLET)
+            if (node.Tag is EmrTemplet)
             {
-                IEMRTEMPLET emrtemplet = node.Tag as IEMRTEMPLET;
+                EmrTemplet emrtemplet = node.Tag as EmrTemplet;
                 TempletEdit tempFrm = new TempletEdit(emrtemplet);
-                if (tempFrm.ShowDialog()==DialogResult.OK)
+                if (tempFrm.ShowDialog() == DialogResult.OK)
                 {
                     LoadTreeData(Convert.ToInt32(treeInfo.Tag));
                     MessageBox.Show("模板修改成功！");
-                }
+                } 
             }
         }
 
@@ -306,26 +388,29 @@ namespace Clinic.Case.Business
                     MessageBox.Show("该账号没有权限删除，请通知管理员进行删除！");
                     return;
                 }
-                IEMRTEMPLET emrtemplet = node.Tag as IEMRTEMPLET;
-                emrtemplet.Refresh();
-                emrtemplet.Delete();
-                tempList.DeleteEntity(emrtemplet);
-                treeInfo.Nodes.Remove(node);
-                for (int i = 0; i < tempList.Rows.Count; i++)
-                {
-                    if ((tempList.Rows[i] as IEMRTEMPLET).TEMPLET_ID == emrtemplet.TEMPLET_ID)
-                    {
-                        tempList.RemoveAt(i);
-                    }
-                }
+
+
+
+                //IEMRTEMPLET emrtemplet = node.Tag as IEMRTEMPLET;
+                //emrtemplet.Refresh();
+                //emrtemplet.Delete();
+                //tempList.DeleteEntity(emrtemplet);
+                //treeInfo.Nodes.Remove(node);
+                //for (int i = 0; i < tempList.Rows.Count; i++)
+                //{
+                //    if ((tempList.Rows[i] as IEMRTEMPLET).TEMPLET_ID == emrtemplet.TEMPLET_ID)
+                //    {
+                //        tempList.RemoveAt(i);
+                //    }
+                //}v
             }
         }
 
-    
+
         private void treeListBasicInfo_DoubleClick(object sender, EventArgs e)
         {
             TreeListNode node = treeListBasicInfo.FocusedNode;
-            if (node!=null)
+            if (node != null)
             {
                 IInputInfo inputInfo = node.Tag as IInputInfo;
                 XTextInputFieldElement field = new XTextInputFieldElement();
@@ -422,12 +507,12 @@ namespace Clinic.Case.Business
             if (node.Tag is IEMRTEMPLET)
             {
                 IEMRTEMPLET emrtemplet = node.Tag as IEMRTEMPLET;
-                if (emrtemplet.CREATOR_ID!=WinnerHIS.Common.ContextHelper.Employee.EmployeeID&&(int)WinnerHIS.Common.ContextHelper.Employee.Type!=8)
+                if (emrtemplet.CREATOR_ID != WinnerHIS.Common.ContextHelper.Employee.EmployeeID && (int)WinnerHIS.Common.ContextHelper.Employee.Type != 8)
                 {
                     MessageBox.Show("该模板不是该账号创建的模板，无法设为个人模板？");
                     return;
                 }
-                if (MessageBox.Show("确认把改模板设为个人模板吗？","提示",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+                if (MessageBox.Show("确认把改模板设为个人模板吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     emrtemplet.Refresh();
                     emrtemplet.MR_ATTR = 1;
@@ -467,7 +552,7 @@ namespace Clinic.Case.Business
             templet.CREATOR_ID = WinnerHIS.Common.ContextHelper.Employee.EmployeeID;
             templet.MR_ATTR = caseFrm.attr;
             templet.Insert();
-             AddTreeNode(templet);
+            AddTreeNode(templet);
 
         }
     }

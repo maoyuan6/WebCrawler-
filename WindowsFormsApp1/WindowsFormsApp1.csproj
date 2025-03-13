@@ -39,6 +39,9 @@
     <Reference Include="Clinic.Case.Interface">
       <HintPath>tool\Clinic.Case.Interface.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="DCSoft.Writer">
       <HintPath>tool\DCSoft.Writer.dll</HintPath>
     </Reference>
@@ -325,6 +328,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorConstants.cs" />
+    <Compile Include="Dapper\DapperHelper.cs" />
+    <Compile Include="Entity\EMR\Department.cs" />
+    <Compile Include="Entity\EMR\DictCatalog.cs" />
+    <Compile Include="Entity\EMR\EmrTemplet.cs" />
+    <Compile Include="Entity\EMR\InputInfo.cs" />
+    <Compile Include="Entity\EMR\Symbol.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

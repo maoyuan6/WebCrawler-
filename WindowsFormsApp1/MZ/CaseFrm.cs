@@ -39,13 +39,16 @@ namespace Clinic.Case.Business
         private DataSourceTreeViewControler dstvControler = null;
         public int editSatus = 0;//0模板，1页眉，2页脚，3子模板
         public IEMRTEMPLET empTemplet; //病历模板
+        public EmrTemplet newEmpTemplet; //病历模板
         public IEMRTEMPLET_HEADER empTempletHeader; //页眉模板
         public IEMRTEMPLET_FOOT empTempletfoot; //页脚模板
         public bool isEdit;//判断是否是编辑模式
-        public int deptid =0;
-        public string mrClass="";
+        public int deptid = 0;
+        public string mrClass = "";
         public int attr = 0;//模板属性科室\个人
         CaseTemplete _caseTemplet;
+        DapperHelper EMRContext = new DapperHelper("EMR");
+        DapperHelper BaseDataContext = new DapperHelper("BaseData");
         public CaseFrm(CaseTemplete caseTemplet)
         {
             InitializeComponent();
@@ -269,7 +272,7 @@ namespace Clinic.Case.Business
 
 
 
- 
+
         /// <summary>
         /// 递归填充树状结构
         /// </summary>
@@ -924,50 +927,103 @@ namespace Clinic.Case.Business
         {
             myWriterControl.ExecuteCommand("FileNew", true, null);
 
-            TempletEdit tempFrm = new TempletEdit(deptid,mrClass, attr);
+            TempletEdit tempFrm = new TempletEdit(deptid, mrClass, attr);
             if (tempFrm.ShowDialog() == DialogResult.OK)
             {
                 isEdit = false;//新增模式
-                empTemplet = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreataEMRTEMPLET();
-                empTemplet.Session = CacheHelper.Session;
-                empTemplet.TEMPLET_ID = empTemplet.MaxID();
-                empTemplet.MR_NAME = tempFrm.txtName.Text;
-                empTemplet.MR_CLASS = tempFrm.cmbType.EditValue.ToString();
-                empTemplet.FILE_NAME = tempFrm.txtTitle.Text;
-                empTemplet.DEPT_ID = Convert.ToInt32(tempFrm.cmbDept.EditValue);
-                empTemplet.ISSHOWFILENAME = tempFrm.checkShowTitle.Checked ? 1 : 0;
-                empTemplet.MR_ATTR = tempFrm.radioType.SelectedIndex;
-                empTemplet.CREATE_DATETIME = ContextHelper.CurrentTime;
-                empTemplet.CREATOR_ID = ContextHelper.Employee.EmployeeID;
+                EmrTemplet emrTemplet = new EmrTemplet();
+
+                emrTemplet.TempletId = EMRContext.GetMaxId("TempletId", "[EMR].EmrTemplet");
+                emrTemplet.MrName = tempFrm.txtName.Text;
+                emrTemplet.MrClass = tempFrm.cmbType.EditValue.ToString();
+                emrTemplet.FileName = tempFrm.txtTitle.Text;
+                emrTemplet.DeptId = Convert.ToInt32(tempFrm.cmbDept.EditValue);
+                emrTemplet.IsShowFileName = tempFrm.checkShowTitle.Checked ? 1 : 0;
+                emrTemplet.MrAttr = tempFrm.radioType.SelectedIndex;
+                emrTemplet.CreateDateTime = ContextHelper.CurrentTime;
+                emrTemplet.CreatorId = ContextHelper.Employee.EmployeeID;
                 foreach (CheckedListBoxItem item in tempFrm.checklist.CheckedItems)
                 {
                     switch (item.Value)
                     {
                         case 0://首次病程
-                            empTemplet.ISFIRSTDAILY = 1;
+                            emrTemplet.IsFirstDaily = 1;
                             break;
                         case 1://新页结束
-                            empTemplet.NEW_PAGE_END = 1;
+                            emrTemplet.NewPageEnd = 1;
                             break;
                         case 2://页面配置
-                            empTemplet.ISCONFIGPAGESIZE = 1;
+                            emrTemplet.IsConfigPageSize = 1;
                             break;
                         case 3://新页开始
-                            empTemplet.NEW_PAGE_FLAG = 1;
+                            emrTemplet.NewPageFlag = 1;
                             break;
                         case 4://医患沟通
-                            empTemplet.ISYIHUANGOUTONG = 1;
+                            emrTemplet.IsYiHuanGouTong = 1;
                             break;
 
                     }
                 }
-                empTemplet.Insert();
-                _caseTemplet.AddTreeNode(empTemplet);
+                InsertEmrTemplet(emrTemplet);
+                //             _caseTemplet.AddTreeNode(empTemplet);
+                //empTemplet = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreataEMRTEMPLET();
+                //             empTemplet.Session = CacheHelper.Session;
+                //             empTemplet.TEMPLET_ID = empTemplet.MaxID();
+                //             empTemplet.MR_NAME = tempFrm.txtName.Text;
+                //             empTemplet.MR_CLASS = tempFrm.cmbType.EditValue.ToString();
+                //             empTemplet.FILE_NAME = tempFrm.txtTitle.Text;
+                //             empTemplet.DEPT_ID = Convert.ToInt32(tempFrm.cmbDept.EditValue);
+                //             empTemplet.ISSHOWFILENAME = tempFrm.checkShowTitle.Checked ? 1 : 0;
+                //             empTemplet.MR_ATTR = tempFrm.radioType.SelectedIndex;
+                //             empTemplet.CREATE_DATETIME = ContextHelper.CurrentTime;
+                //             empTemplet.CREATOR_ID = ContextHelper.Employee.EmployeeID;
+                //             foreach (CheckedListBoxItem item in tempFrm.checklist.CheckedItems)
+                //             {
+                //                 switch (item.Value)
+                //                 {
+                //                     case 0://首次病程
+                //                         empTemplet.ISFIRSTDAILY = 1;
+                //                         break;
+                //                     case 1://新页结束
+                //                         empTemplet.NEW_PAGE_END = 1;
+                //                         break;
+                //                     case 2://页面配置
+                //                         empTemplet.ISCONFIGPAGESIZE = 1;
+                //                         break;
+                //                     case 3://新页开始
+                //                         empTemplet.NEW_PAGE_FLAG = 1;
+                //                         break;
+                //                     case 4://医患沟通
+                //                         empTemplet.ISYIHUANGOUTONG = 1;
+                //                         break;
+
+                //                 }
+                //             }
+                //             empTemplet.Insert();
+                //             _caseTemplet.AddTreeNode(empTemplet);
 
                 editSatus = 0;
             }
-      
+
         }
+
+        public int InsertEmrTemplet(EmrTemplet emrTemplet)
+        {
+            var sql = @"INSERT INTO [EMR].[EMRTEMPLET] 
+                    (FileName, DeptId, CreatorId, CreateDateTime, LastTime, Permission, MrClass, MrCode, MrName, MrAttr, 
+                     QcCode, NewPageFlag, FileFlag, WriteTimes, Code, HospitalCode, XmlDoc, XmlDocNew, Py, Wb, IsFirstDaily, 
+                     IsShowFileName, IsYiHuanGouTong, NewPageEnd, Valid, State, Auditor, AuditDate, IsConfigPageSize, ZyZhenDuan, 
+                     XyZhenDuan)
+                    VALUES 
+                    (@FileName, @DeptId, @CreatorId, @CreateDateTime, @LastTime, @Permission, @MrClass, @MrCode, @MrName, @MrAttr, 
+                     @QcCode, @NewPageFlag, @FileFlag, @WriteTimes, @Code, @HospitalCode, @XmlDoc, @XmlDocNew, @Py, @Wb, @IsFirstDaily, 
+                     @IsShowFileName, @IsYiHuanGouTong, @NewPageEnd, @Valid, @State, @Auditor, @AuditDate, @IsConfigPageSize, @ZyZhenDuan, 
+                     @XyZhenDuan);
+                    SELECT SCOPE_IDENTITY();";
+
+            return EMRContext.Insert<int>(sql, emrTemplet);
+        }
+
         private void btn_AddHeader_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             myWriterControl.ExecuteCommand("FileNew", true, null);
@@ -1001,7 +1057,7 @@ namespace Clinic.Case.Business
             catch (Exception ex)
             {
                 MessageBox.Show("保存的时候出现了异常：" + ex.Message);
-                return; 
+                return;
             }
             finally
             {
@@ -1113,14 +1169,66 @@ namespace Clinic.Case.Business
         #endregion
         public void SaveMode()
         {
-            empTemplet.Refresh();
-            empTemplet.LAST_TIME = ContextHelper.CurrentTime;
-            empTemplet.XML_DOC_NEW = myWriterControl.XMLText;
-            empTemplet.XYZhenDuan = ReturnMedicalCode();
-            empTemplet.ZYZhenDuan = ReturnChineseMedicine();
-            empTemplet.Save();
+            newEmpTemplet.LastTime = ContextHelper.CurrentTime;
+            newEmpTemplet.XmlDocNew = myWriterControl.XMLText;
+            newEmpTemplet.XyZhenDuan = ReturnMedicalCode();
+            newEmpTemplet.ZyZhenDuan = ReturnChineseMedicine();
+            UpdateEmrTemplet(newEmpTemplet);
             isEdit = true;
-            MessageBox.Show("病历模板["+empTemplet.MR_NAME+"]保存成功！");
+            MessageBox.Show("病历模板[" + newEmpTemplet.MrName + "]保存成功！");
+
+            //empTemplet.Refresh();
+            //empTemplet.LAST_TIME = ContextHelper.CurrentTime;
+            //empTemplet.XML_DOC_NEW = myWriterControl.XMLText;
+            //empTemplet.XYZhenDuan = ReturnMedicalCode();
+            //empTemplet.ZYZhenDuan = ReturnChineseMedicine();
+            //empTemplet.Save();
+            //isEdit = true;
+            //MessageBox.Show("病历模板[" + empTemplet.MR_NAME + "]保存成功！");
+        }
+
+        /// <summary>
+        /// 更新EmrTemplet表中的数据
+        /// </summary>
+        /// <param name="emrTemplet">要更新的数据对象</param>
+        public int UpdateEmrTemplet(EmrTemplet emrTemplet)
+        {
+            var sql = @"UPDATE [EMR].[EMRTEMPLET]
+                    SET 
+                        FileName = @FileName,
+                        DeptId = @DeptId,
+                        CreatorId = @CreatorId,
+                        CreateDateTime = @CreateDateTime,
+                        LastTime = @LastTime,
+                        Permission = @Permission,
+                        MrClass = @MrClass,
+                        MrCode = @MrCode,
+                        MrName = @MrName,
+                        MrAttr = @MrAttr,
+                        QcCode = @QcCode,
+                        NewPageFlag = @NewPageFlag,
+                        FileFlag = @FileFlag,
+                        WriteTimes = @WriteTimes,
+                        Code = @Code,
+                        HospitalCode = @HospitalCode,
+                        XmlDoc = @XmlDoc,
+                        XmlDocNew = @XmlDocNew,
+                        Py = @Py,
+                        Wb = @Wb,
+                        IsFirstDaily = @IsFirstDaily,
+                        IsShowFileName = @IsShowFileName,
+                        IsYiHuanGouTong = @IsYiHuanGouTong,
+                        NewPageEnd = @NewPageEnd,
+                        Valid = @Valid,
+                        State = @State,
+                        Auditor = @Auditor,
+                        AuditDate = @AuditDate,
+                        IsConfigPageSize = @IsConfigPageSize,
+                        ZyZhenDuan = @ZyZhenDuan,
+                        XyZhenDuan = @XyZhenDuan
+                    WHERE TempletId = @TempletId";
+
+            return EMRContext.Execute(sql, emrTemplet);
         }
         public void SaveModeHeader()
         {
@@ -1234,8 +1342,8 @@ namespace Clinic.Case.Business
             XTextElementList imgElementlist = myWriterControl.Images;
             foreach (XTextElement item in imgElementlist)
             {
-                if(item.ClientWidth== EditorHelper.SignWidth)
-                   item.ID = "DocSign";
+                if (item.ClientWidth == EditorHelper.SignWidth)
+                    item.ID = "DocSign";
             }
         }
     }
