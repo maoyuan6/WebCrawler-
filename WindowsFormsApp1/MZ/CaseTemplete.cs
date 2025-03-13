@@ -28,14 +28,14 @@ namespace Clinic.Case.Business
             InitializeComponent();
             caseFrm = new CaseFrm(this);
             caseFrm.Dock = DockStyle.Fill;
-            this.panelMain.Controls.Add(caseFrm); 
+            this.panelMain.Controls.Add(caseFrm);
             Initialize();
         }
         DapperHelper EMRContext = new DapperHelper("EMR");
         DapperHelper BaseDataContext = new DapperHelper("BaseData");
         DepartmentRepositories departmentRepositories = new DepartmentRepositories();
         EmrTempletRepositories emrTempletRepositories = new EmrTempletRepositories();
-        SymbolRepositories  symbolRepositories = new SymbolRepositories();
+        SymbolRepositories symbolRepositories = new SymbolRepositories();
         InputInfoRepositories inputInfoRepositories = new InputInfoRepositories();
         DictCatalogRepositories dictCatalogRepositories = new DictCatalogRepositories();
         #region 重写 ExplorerControl 属性/方法
@@ -160,7 +160,7 @@ namespace Clinic.Case.Business
         {
 
             List<Symbol> symList = symbolRepositories.GetSymbolList();
-                 
+
             //ISYMBOLSList symList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateSYMBOLSList();
             //symList.Session = this.Session;
             //symList.Query();
@@ -276,8 +276,14 @@ namespace Clinic.Case.Business
             {
                 caseFrm.isEdit = true;
                 caseFrm.myWriterControl.XMLText = templet.XML_DOC_NEW;
-                caseFrm.MedicalCodeEditValue(templet.XYZhenDuan);
-                caseFrm.ChineseMedicineIcdEditValue(templet.ZYZhenDuan);
+                if (!string.IsNullOrEmpty(templet.XYZhenDuan))
+                {
+                    caseFrm.MedicalCodeEditValue(templet.XYZhenDuan);
+                }
+                if (!string.IsNullOrEmpty(templet.ZYZhenDuan))
+                {
+                    caseFrm.ChineseMedicineIcdEditValue(templet.ZYZhenDuan);
+                }
                 caseFrm.newEmpTemplet = templet;
                 caseFrm.editSatus = 0;
             }
@@ -305,7 +311,7 @@ namespace Clinic.Case.Business
                 caseFrm.deptid = Convert.ToInt32(node.Tag);
             }
         }
-         
+
         private void btnModeUp_Click(object sender, EventArgs e)
         {
             TreeListNode node = this.treeInfo.FocusedNode;
@@ -317,7 +323,7 @@ namespace Clinic.Case.Business
                 {
                     LoadTreeData(Convert.ToInt32(treeInfo.Tag));
                     MessageBox.Show("模板修改成功！");
-                } 
+                }
             }
         }
 
