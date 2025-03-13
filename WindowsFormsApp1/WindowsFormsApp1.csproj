@@ -289,6 +289,30 @@
     <Reference Include="WinnerSoft.Object">
       <HintPath>tool\WinnerSoft.Object.dll</HintPath>
     </Reference>
+    <Reference Include="WinnerSoft.Report.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="WinnerSoft.Report.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="WinnerSoft.Report.Core, Version=4.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WinnerSoft.Report.Interface, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="WinnerSoft.Report.Realization, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.Realization.dll</HintPath>
+    </Reference>
+    <Reference Include="WinnerSoft.Report.WinForm, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>tool\WinnerSoft.Report.WinForm.dll</HintPath>
+    </Reference>
     <Reference Include="WinnerSoft.Session">
       <HintPath>tool\WinnerSoft.Session.dll</HintPath>
     </Reference>
@@ -953,6 +977,12 @@
     <Content Include="tool\WinnerSoft.Data.pdb" />
     <Content Include="tool\WinnerSoft.Object.dll" />
     <Content Include="tool\WinnerSoft.Object.pdb" />
+    <Content Include="tool\WinnerSoft.Report.Business.dll" />
+    <Content Include="tool\WinnerSoft.Report.Controls.dll" />
+    <Content Include="tool\WinnerSoft.Report.Core.dll" />
+    <Content Include="tool\WinnerSoft.Report.Interface.dll" />
+    <Content Include="tool\WinnerSoft.Report.Realization.dll" />
+    <Content Include="tool\WinnerSoft.Report.WinForm.dll" />
     <Content Include="tool\WinnerSoft.Session.dll" />
     <Content Include="tool\WinnerSoft.Session.pdb" />
     <Content Include="tool\WinnerSoft.System.dll" />

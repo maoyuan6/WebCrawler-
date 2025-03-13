@@ -1,21 +1,14 @@
-﻿using Clinic.Case.Interface;
-using DCSoft.Writer.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
+using Clinic.Case.Interface;
 using DCSoft.Writer.Dom;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using HPSoft.FrameWork;
 using HPSoft.FrameWork.WinForm;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WinnerHIS.Common;
-using WinnerHIS.Integral.Personnel;
 using WinnerHIS.Integral.Personnel.DAL.Interface;
 using WinnerSoft.Data.Access;
 
