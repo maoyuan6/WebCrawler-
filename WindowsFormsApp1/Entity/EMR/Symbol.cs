@@ -20,21 +20,22 @@ namespace EMR
         /// <summary>
         /// 分类ID
         /// </summary>
-        public int CategoryId { get; set; }
+        public int CATEGORYID { get; set; }
 
         /// <summary>
         /// 长度（可为空）
         /// </summary>
-        public int? Length { get; set; }
+        public int? LENGTH { get; set; }
 
         /// <summary>
         /// 备注（可为空）
         /// </summary>
-        public string Memo { get; set; }
+        public string MEMO { get; set; }
 
         /// <summary>
         /// 内容（可为空）
         /// </summary>
-        public string Content { get; set; }
+        public string CONTENT { get; set; }
     }
+
 }

@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WindowsFormsApp1.Dapper;
+using WindowsFormsApp1.Entity.EMR;
 using WinnerHIS.Common;
 using WinnerHIS.Integral.Personnel.DAL.Interface;
 
@@ -18,6 +20,8 @@ namespace Clinic.Case.Business
         bool isEdit;//是否编辑状态
         DapperHelper EMRContext = new DapperHelper("EMR");
         DapperHelper BaseDataContext = new DapperHelper("BaseData");
+        DictCatalogRepositories dictCatalogRepositories = new DictCatalogRepositories();
+        DepartmentRepositories departmentRepositories = new DepartmentRepositories();
         //添加
         public TempletEdit(int deptid, string mrCode, int attr = 0)
         {
@@ -42,31 +46,31 @@ namespace Clinic.Case.Business
             LoadControl();
             isEdit = true;
             emrtemplet = templet;
-            txtCode.Text = templet.CreatorId.ToString();
-            txtName.Text = templet.MrName;
-            cmbType.EditValue = templet.MrClass;
-            cmbDept.EditValue = templet.DeptId;
-            txtTitle.Text = templet.FileName;
-            checkShowTitle.Checked = templet.IsShowFileName == 1;
-            radioType.SelectedIndex = templet.MrAttr ?? 0;
+            txtCode.Text = templet.CREATOR_ID.ToString();
+            txtName.Text = templet.MR_NAME;
+            cmbType.EditValue = templet.MR_CLASS;
+            cmbDept.EditValue = templet.DEPT_ID;
+            txtTitle.Text = templet.FILE_NAME;
+            checkShowTitle.Checked = templet.ISSHOWFILENAME == 1;
+            radioType.SelectedIndex = templet.MR_ATTR ?? 0;
             foreach (CheckedListBoxItem item in checklist.Items)
             {
                 switch (item.Value)
                 {
                     case 0://首次病程
-                        item.CheckState = templet.IsFirstDaily == 1 ? CheckState.Checked : CheckState.Unchecked;
+                        item.CheckState = templet.ISFIRSTDAILY == 1 ? CheckState.Checked : CheckState.Unchecked;
                         break;
                     case 1://新页结束
-                        item.CheckState = templet.NewPageEnd == 1 ? CheckState.Checked : CheckState.Unchecked;
+                        item.CheckState = templet.NEW_PAGE_END == 1 ? CheckState.Checked : CheckState.Unchecked;
                         break;
                     case 2://页面配置
-                        item.CheckState = templet.IsConfigPageSize == 1 ? CheckState.Checked : CheckState.Unchecked;
+                        item.CheckState = templet.ISCONFIGPAGESIZE == 1 ? CheckState.Checked : CheckState.Unchecked;
                         break;
                     case 3://新页开始
-                        item.CheckState = templet.NewPageFlag == 1 ? CheckState.Checked : CheckState.Unchecked;
+                        item.CheckState = templet.NEW_PAGE_FLAG == 1 ? CheckState.Checked : CheckState.Unchecked;
                         break;
                     case 4://医患沟通
-                        item.CheckState = templet.IsYiHuanGouTong == 1 ? CheckState.Checked : CheckState.Unchecked;
+                        item.CheckState = templet.ISYIHUANGOUTONG == 1 ? CheckState.Checked : CheckState.Unchecked;
                         break;
                 }
             }
@@ -95,38 +99,38 @@ namespace Clinic.Case.Business
                 this.DialogResult = DialogResult.OK;
             }
             else
-            { 
-                emrtemplet.MrName = txtName.Text;
-                emrtemplet.MrClass = cmbType.EditValue.ToString();
-                emrtemplet.FileName = txtTitle.Text;
-                emrtemplet.DeptId = Convert.ToInt32(cmbDept.EditValue);
-                emrtemplet.IsShowFileName = checkShowTitle.Checked ? 1 : 0;
-                emrtemplet.MrAttr = radioType.SelectedIndex;
+            {
+                emrtemplet.MR_NAME = txtName.Text;
+                emrtemplet.MR_CLASS = cmbType.EditValue.ToString();
+                emrtemplet.FILE_NAME = txtTitle.Text;
+                emrtemplet.DEPT_ID = Convert.ToInt32(cmbDept.EditValue);
+                emrtemplet.ISSHOWFILENAME = checkShowTitle.Checked ? 1 : 0;
+                emrtemplet.MR_ATTR = radioType.SelectedIndex;
                 foreach (CheckedListBoxItem item in checklist.Items)
                 {
                     switch (item.Value)
                     {
                         case 0://首次病程
-                            emrtemplet.IsFirstDaily = item.CheckState == CheckState.Checked ? 1 : 0;
+                            emrtemplet.ISFIRSTDAILY = item.CheckState == CheckState.Checked ? 1 : 0;
                             break;
                         case 1://新页结束
-                            emrtemplet.NewPageEnd = item.CheckState == CheckState.Checked ? 1 : 0;
+                            emrtemplet.NEW_PAGE_END = item.CheckState == CheckState.Checked ? 1 : 0;
                             break;
                         case 2://页面配置
-                            emrtemplet.IsConfigPageSize = item.CheckState == CheckState.Checked ? 1 : 0;
+                            emrtemplet.ISCONFIGPAGESIZE = item.CheckState == CheckState.Checked ? 1 : 0;
                             break;
                         case 3://新页开始
-                            emrtemplet.NewPageFlag = item.CheckState == CheckState.Checked ? 1 : 0;
+                            emrtemplet.NEW_PAGE_FLAG = item.CheckState == CheckState.Checked ? 1 : 0;
                             break;
                         case 4://医患沟通
-                            emrtemplet.IsYiHuanGouTong = item.CheckState == CheckState.Checked ? 1 : 0;
+                            emrtemplet.ISYIHUANGOUTONG = item.CheckState == CheckState.Checked ? 1 : 0;
                             break;
                     }
                 }
-                UpdateEmrTemplet(emrtemplet); 
+                UpdateEmrTemplet(emrtemplet);
                 this.DialogResult = DialogResult.OK;
             }
-        } 
+        }
         /// <summary>
         /// 更新EmrTemplet表中的数据
         /// </summary>
@@ -172,15 +176,41 @@ namespace Clinic.Case.Business
         }
         public void LoadControl()
         {
-            IDICT_CATALOGList dictList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateDICT_CATALOGList();
-            dictList.Session = this.Session;
-            dictList.GetAllList();
+            var dictList = dictCatalogRepositories.GeDictCatalogList();
+            //IDICT_CATALOGList dictList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateDICT_CATALOGList();
+            //dictList.Session = this.Session;
+            //dictList.GetAllList();
             cmbType.Properties.DataSource = dictList;
+            //// 设置绑定的 Value 列和 Text 列
+            //cmbType.Properties.ValueMember = "CCode"; // 绑定 Value 列
+            //cmbType.Properties.DisplayMember = "CName"; // 绑定 Text 列
+            //// 设置为 DropDownList 样式以确保可以选择
+            //cmbType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            //// 清除所有列
+            //cmbType.Properties.Columns.Clear();
+            //// 仅显示 CName 列
+            //cmbType.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CName", "名称"));
+            //cmbType.Properties.PopulateColumns();  // 确保列被正确加载
+                                                   //IDepartmentList deptlist = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartmentList();
+                                                   //deptlist.Session = this.Session;
+                                                   //deptlist.GetCMClinicDept();
 
-            IDepartmentList deptlist = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartmentList();
-            deptlist.Session = this.Session;
-            deptlist.GetCMClinicDept();
+            var deptlist = departmentRepositories.GeDepartmentList();
             cmbDept.Properties.DataSource = deptlist;
+            // 设置绑定的 Value 列和 Text 列
+            cmbDept.Properties.ValueMember = "ID"; // 绑定 Value 列
+            cmbDept.Properties.DisplayMember = "NAME"; // 绑定 Text 列
+            // 设置为 DropDownList 样式，确保可以选择
+            cmbDept.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            cmbDept.Properties.DropDownRows = deptlist.Count;  // 设置下拉框显示的最大行数
+            // 清除所有列
+            cmbDept.Properties.Columns.Clear();
+            // 仅显示 Name 列
+            cmbDept.Properties.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NAME", "名称"));
+            // 确保控件是启用和可编辑的
+            cmbDept.Enabled = true;  // 确保控件启用
+            cmbDept.Properties.ReadOnly = false;  // 确保控件不是只读
+
         }
     }
 }

@@ -6,57 +6,58 @@
 public class DictCatalog
 {
     /// <summary>
-    /// 代码
+    /// 代码（对应数据库字段 CCODE）
     /// </summary>
-    public string CCode { get; set; }
+    public string CCODE { get; set; }
 
     /// <summary>
-    /// 名称
+    /// 名称（对应数据库字段 CNAME）
     /// </summary>
-    public string CName { get; set; }
+    public string CNAME { get; set; }
 
     /// <summary>
-    /// 类型
+    /// 类型（对应数据库字段 CTYPE）
     /// </summary>
-    public char? CType { get; set; }
+    public char? CTYPE { get; set; }
 
     /// <summary>
-    /// 图像索引
+    /// 图像索引（对应数据库字段 IMAGE_INDEX）
     /// </summary>
-    public decimal? ImageIndex { get; set; }
+    public decimal? IMAGE_INDEX { get; set; }
 
     /// <summary>
-    /// 子图像索引
+    /// 子图像索引（对应数据库字段 SIMAGE_INDEX）
     /// </summary>
-    public decimal? SImageIndex { get; set; }
+    public decimal? SIMAGE_INDEX { get; set; }
 
     /// <summary>
-    /// 开放标识
+    /// 开放标识（对应数据库字段 OPEN_FLAG）
     /// </summary>
-    public decimal? OpenFlag { get; set; }
+    public decimal? OPEN_FLAG { get; set; }
 
     /// <summary>
-    /// 用户类型
+    /// 用户类型（对应数据库字段 UTYPE）
     /// </summary>
-    public string UType { get; set; }
+    public string UTYPE { get; set; }
 
     /// <summary>
-    /// 模板类型
+    /// 模板类型（对应数据库字段 MTYPE）
     /// </summary>
-    public string MType { get; set; }
+    public string MTYPE { get; set; }
 
     /// <summary>
-    /// 模板名称
+    /// 模板名称（对应数据库字段 MNAME）
     /// </summary>
-    public string MName { get; set; }
+    public string MNAME { get; set; }
 
     /// <summary>
-    /// 参数
+    /// 参数（对应数据库字段 ARGS）
     /// </summary>
-    public string Args { get; set; }
+    public string ARGS { get; set; }
 
     /// <summary>
-    /// 模板类是否启用
+    /// 模板类是否启用（对应数据库字段 ISUSED）
     /// </summary>
-    public string IsUsed { get; set; }
+    public string ISUSED { get; set; }
 }
+

@@ -22,6 +22,7 @@ using HPSoft.FrameWork.WinForm;
 using Clinic.Case.Business;
 using HPSoft.Library.EmrEditor.Src.Common;
 using System.Xml;
+using WindowsFormsApp1.Dapper;
 using WinnerSoft.Data.Access;
 using DevExpress.Utils;
 using Clinic.Case.Interface;
@@ -47,8 +48,8 @@ namespace Clinic.Case.Business
         public string mrClass = "";
         public int attr = 0;//模板属性科室\个人
         CaseTemplete _caseTemplet;
-        DapperHelper EMRContext = new DapperHelper("EMR");
-        DapperHelper BaseDataContext = new DapperHelper("BaseData");
+
+        private EmrTempletRepositories emrTempletRepositories = new EmrTempletRepositories();
         public CaseFrm(CaseTemplete caseTemplet)
         {
             InitializeComponent();
@@ -932,39 +933,40 @@ namespace Clinic.Case.Business
             {
                 isEdit = false;//新增模式
                 EmrTemplet emrTemplet = new EmrTemplet();
-
-                emrTemplet.TempletId = EMRContext.GetMaxId("TempletId", "[EMR].EmrTemplet");
-                emrTemplet.MrName = tempFrm.txtName.Text;
-                emrTemplet.MrClass = tempFrm.cmbType.EditValue.ToString();
-                emrTemplet.FileName = tempFrm.txtTitle.Text;
-                emrTemplet.DeptId = Convert.ToInt32(tempFrm.cmbDept.EditValue);
-                emrTemplet.IsShowFileName = tempFrm.checkShowTitle.Checked ? 1 : 0;
-                emrTemplet.MrAttr = tempFrm.radioType.SelectedIndex;
-                emrTemplet.CreateDateTime = ContextHelper.CurrentTime;
-                emrTemplet.CreatorId = ContextHelper.Employee.EmployeeID;
+                DapperHelper EMRContext = new DapperHelper("EMR");
+                emrTemplet.TEMPLET_ID = EMRContext.GetMaxId("TEMPLET_ID", "[EMR].EmrTemplet");
+                emrTemplet.TEMPLET_ID++;
+                emrTemplet.MR_NAME = tempFrm.txtName.Text;
+                emrTemplet.MR_CLASS = tempFrm.cmbType.EditValue.ToString();
+                emrTemplet.FILE_NAME = tempFrm.txtTitle.Text;
+                emrTemplet.DEPT_ID = Convert.ToInt32(tempFrm.cmbDept.EditValue);
+                emrTemplet.ISSHOWFILENAME = tempFrm.checkShowTitle.Checked ? 1 : 0;
+                emrTemplet.MR_ATTR = tempFrm.radioType.SelectedIndex;
+                emrTemplet.CREATE_DATETIME = DateTime.Now;//ContextHelper.CurrentTime;
+                emrTemplet.CREATOR_ID = 7;//ContextHelper.Employee.EmployeeID;
                 foreach (CheckedListBoxItem item in tempFrm.checklist.CheckedItems)
                 {
                     switch (item.Value)
                     {
                         case 0://首次病程
-                            emrTemplet.IsFirstDaily = 1;
+                            emrTemplet.ISFIRSTDAILY = 1;
                             break;
                         case 1://新页结束
-                            emrTemplet.NewPageEnd = 1;
+                            emrTemplet.NEW_PAGE_END = 1;
                             break;
                         case 2://页面配置
-                            emrTemplet.IsConfigPageSize = 1;
+                            emrTemplet.ISCONFIGPAGESIZE = 1;
                             break;
                         case 3://新页开始
-                            emrTemplet.NewPageFlag = 1;
+                            emrTemplet.NEW_PAGE_FLAG = 1;
                             break;
                         case 4://医患沟通
-                            emrTemplet.IsYiHuanGouTong = 1;
+                            emrTemplet.ISYIHUANGOUTONG = 1;
                             break;
 
                     }
                 }
-                InsertEmrTemplet(emrTemplet);
+                emrTempletRepositories.InsertEmrTemplet(emrTemplet);
                 //             _caseTemplet.AddTreeNode(empTemplet);
                 //empTemplet = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreataEMRTEMPLET();
                 //             empTemplet.Session = CacheHelper.Session;
@@ -1007,23 +1009,7 @@ namespace Clinic.Case.Business
 
         }
 
-        public int InsertEmrTemplet(EmrTemplet emrTemplet)
-        {
-            var sql = @"INSERT INTO [EMR].[EMRTEMPLET] 
-                    (FileName, DeptId, CreatorId, CreateDateTime, LastTime, Permission, MrClass, MrCode, MrName, MrAttr, 
-                     QcCode, NewPageFlag, FileFlag, WriteTimes, Code, HospitalCode, XmlDoc, XmlDocNew, Py, Wb, IsFirstDaily, 
-                     IsShowFileName, IsYiHuanGouTong, NewPageEnd, Valid, State, Auditor, AuditDate, IsConfigPageSize, ZyZhenDuan, 
-                     XyZhenDuan)
-                    VALUES 
-                    (@FileName, @DeptId, @CreatorId, @CreateDateTime, @LastTime, @Permission, @MrClass, @MrCode, @MrName, @MrAttr, 
-                     @QcCode, @NewPageFlag, @FileFlag, @WriteTimes, @Code, @HospitalCode, @XmlDoc, @XmlDocNew, @Py, @Wb, @IsFirstDaily, 
-                     @IsShowFileName, @IsYiHuanGouTong, @NewPageEnd, @Valid, @State, @Auditor, @AuditDate, @IsConfigPageSize, @ZyZhenDuan, 
-                     @XyZhenDuan);
-                    SELECT SCOPE_IDENTITY();";
-
-            return EMRContext.Insert<int>(sql, emrTemplet);
-        }
-
+      
         private void btn_AddHeader_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             myWriterControl.ExecuteCommand("FileNew", true, null);
@@ -1169,13 +1155,13 @@ namespace Clinic.Case.Business
         #endregion
         public void SaveMode()
         {
-            newEmpTemplet.LastTime = ContextHelper.CurrentTime;
-            newEmpTemplet.XmlDocNew = myWriterControl.XMLText;
-            newEmpTemplet.XyZhenDuan = ReturnMedicalCode();
-            newEmpTemplet.ZyZhenDuan = ReturnChineseMedicine();
-            UpdateEmrTemplet(newEmpTemplet);
+            newEmpTemplet.LAST_TIME = DateTime.Now;//ContextHelper.CurrentTime;
+            newEmpTemplet.XML_DOC_NEW = myWriterControl.XMLText;
+            newEmpTemplet.XYZhenDuan = ReturnMedicalCode();
+            newEmpTemplet.ZYZhenDuan = ReturnChineseMedicine();
+            emrTempletRepositories.UpdateEmrTemplet(newEmpTemplet);
             isEdit = true;
-            MessageBox.Show("病历模板[" + newEmpTemplet.MrName + "]保存成功！");
+            MessageBox.Show("病历模板[" + newEmpTemplet.MR_NAME + "]保存成功！");
 
             //empTemplet.Refresh();
             //empTemplet.LAST_TIME = ContextHelper.CurrentTime;
@@ -1186,50 +1172,7 @@ namespace Clinic.Case.Business
             //isEdit = true;
             //MessageBox.Show("病历模板[" + empTemplet.MR_NAME + "]保存成功！");
         }
-
-        /// <summary>
-        /// 更新EmrTemplet表中的数据
-        /// </summary>
-        /// <param name="emrTemplet">要更新的数据对象</param>
-        public int UpdateEmrTemplet(EmrTemplet emrTemplet)
-        {
-            var sql = @"UPDATE [EMR].[EMRTEMPLET]
-                    SET 
-                        FileName = @FileName,
-                        DeptId = @DeptId,
-                        CreatorId = @CreatorId,
-                        CreateDateTime = @CreateDateTime,
-                        LastTime = @LastTime,
-                        Permission = @Permission,
-                        MrClass = @MrClass,
-                        MrCode = @MrCode,
-                        MrName = @MrName,
-                        MrAttr = @MrAttr,
-                        QcCode = @QcCode,
-                        NewPageFlag = @NewPageFlag,
-                        FileFlag = @FileFlag,
-                        WriteTimes = @WriteTimes,
-                        Code = @Code,
-                        HospitalCode = @HospitalCode,
-                        XmlDoc = @XmlDoc,
-                        XmlDocNew = @XmlDocNew,
-                        Py = @Py,
-                        Wb = @Wb,
-                        IsFirstDaily = @IsFirstDaily,
-                        IsShowFileName = @IsShowFileName,
-                        IsYiHuanGouTong = @IsYiHuanGouTong,
-                        NewPageEnd = @NewPageEnd,
-                        Valid = @Valid,
-                        State = @State,
-                        Auditor = @Auditor,
-                        AuditDate = @AuditDate,
-                        IsConfigPageSize = @IsConfigPageSize,
-                        ZyZhenDuan = @ZyZhenDuan,
-                        XyZhenDuan = @XyZhenDuan
-                    WHERE TempletId = @TempletId";
-
-            return EMRContext.Execute(sql, emrTemplet);
-        }
+         
         public void SaveModeHeader()
         {
             string ss = myWriterControl.XMLText;

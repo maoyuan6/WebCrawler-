@@ -329,6 +329,11 @@
   <ItemGroup>
     <Compile Include="ColorConstants.cs" />
     <Compile Include="Dapper\DapperHelper.cs" />
+    <Compile Include="Dapper\DepartmentRepositories.cs" />
+    <Compile Include="Dapper\DictCatalogRepositories.cs" />
+    <Compile Include="Dapper\EmrTempletRepositories.cs" />
+    <Compile Include="Dapper\InputInfoRepositories.cs" />
+    <Compile Include="Dapper\SymbolRepositories.cs" />
     <Compile Include="Entity\EMR\Department.cs" />
     <Compile Include="Entity\EMR\DictCatalog.cs" />
     <Compile Include="Entity\EMR\EmrTemplet.cs" />

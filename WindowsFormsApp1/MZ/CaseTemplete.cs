@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using WindowsFormsApp1.Dapper;
 using WindowsFormsApp1.Entity.EMR;
 using Clinic.Case.Interface;
 using DCSoft.Writer.Dom;
@@ -13,6 +14,7 @@ using HPSoft.FrameWork;
 using HPSoft.FrameWork.WinForm;
 using WinnerHIS.Common;
 using WinnerHIS.Integral.Personnel.DAL.Interface;
+using WinnerMIS.Integral.Personnel;
 using WinnerSoft.Collections;
 using WinnerSoft.Data.Access;
 
@@ -26,10 +28,16 @@ namespace Clinic.Case.Business
             InitializeComponent();
             caseFrm = new CaseFrm(this);
             caseFrm.Dock = DockStyle.Fill;
-            this.panelMain.Controls.Add(caseFrm);
+            this.panelMain.Controls.Add(caseFrm); 
+            Initialize();
         }
         DapperHelper EMRContext = new DapperHelper("EMR");
         DapperHelper BaseDataContext = new DapperHelper("BaseData");
+        DepartmentRepositories departmentRepositories = new DepartmentRepositories();
+        EmrTempletRepositories emrTempletRepositories = new EmrTempletRepositories();
+        SymbolRepositories  symbolRepositories = new SymbolRepositories();
+        InputInfoRepositories inputInfoRepositories = new InputInfoRepositories();
+        DictCatalogRepositories dictCatalogRepositories = new DictCatalogRepositories();
         #region 重写 ExplorerControl 属性/方法
 
         /// <summary>
@@ -109,8 +117,8 @@ namespace Clinic.Case.Business
         int tempType = 0;
         private void Initialize()
         {
-            var DICT_CATALOGsql = "select * from  [EMR].[DICT_CATALOG]";
-            dictList = EMRContext.Query<DictCatalog>(DICT_CATALOGsql).ToList();
+
+            dictList = dictCatalogRepositories.GeDictCatalogList();
 
             //dictList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateDICT_CATALOGList();
             //dictList.Session = this.Session;
@@ -118,10 +126,9 @@ namespace Clinic.Case.Business
             //deptlist = WinnerHIS.Integral.Personnel.DAL.Interface.DALHelper.DALManager.CreateDepartmentList();
             //deptlist.Session = this.Session;
 
-            if ((int)ContextHelper.Employee.Type == 8)
+            if (true)
             {
-                var Departmentsql = "select * from Department";
-                deptlist = BaseDataContext.Query<Department>(Departmentsql).ToList();
+                deptlist = departmentRepositories.GeDepartmentList();
                 tempType = 0;
             }
             else
@@ -133,15 +140,15 @@ namespace Clinic.Case.Business
                 foreach (DataRow dataRow in table.Rows)
                 {
                     Department dept = new Department();
-                    dept.Id = Convert.ToInt32(dataRow["DEPTID"]);
-                    dept.Name = WinnerHIS.Common.DataConvertHelper.GetDeptName(Convert.ToInt32(dataRow["DEPTID"]));
+                    dept.ID = Convert.ToInt32(dataRow["DEPTID"]);
+                    dept.NAME = WinnerHIS.Common.DataConvertHelper.GetDeptName(Convert.ToInt32(dataRow["DEPTID"]));
                     deptlist.Add(dept);
                 }
                 tempType = 1;
             }
 
-            var EmrTempletSql = "select * from [EMR].[EMRTEMPLET]";
-            tempList = EMRContext.Query<EmrTemplet>(EmrTempletSql).ToList();
+
+            tempList = emrTempletRepositories.GeEmrTempletList();
 
             LoadTreeData(tempType);
             LoadTreeBasicInfo();
@@ -152,12 +159,8 @@ namespace Clinic.Case.Business
         private void LoadTreeSymbols()
         {
 
-            var SymbolSql = "select * from [EMR].[SYMBOLS]";
-
-
-            List<Symbol> symList = EMRContext.Query<Symbol>(SymbolSql).ToList();
-
-
+            List<Symbol> symList = symbolRepositories.GetSymbolList();
+                 
             //ISYMBOLSList symList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateSYMBOLSList();
             //symList.Session = this.Session;
             //symList.Query();
@@ -176,13 +179,12 @@ namespace Clinic.Case.Business
         }
         void LoadTreeBasicInfo()
         {
-            var InputInfoSql = "select* from [dbo].[InputInfo]";
-            var infoList = EMRContext.Query<InputInfo>(InputInfoSql).ToList();
+            var infoList = inputInfoRepositories.GeInputInfoList();
 
             //IInputInfoList infoList = WinnerHIS.Clinic.Case.DAL.Interface.DALHelper.DALManager.CreateInputInfoList();
             //infoList.Session = this.Session;
             //infoList.Query();
-            foreach (IInputInfo item in infoList)
+            foreach (InputInfo item in infoList)
             {
                 TreeListNode node = treeListBasicInfo.AppendNode(null, -1);
                 node.SetValue("ID", item.FileName);
@@ -218,22 +220,22 @@ namespace Clinic.Case.Business
             foreach (Department dept in deptlist)
             {
                 TreeListNode deptNode = treeInfo.AppendNode(null, titleNode);
-                deptNode.SetValue("ID", dept.Id);
-                deptNode.SetValue("NAME", dept.Name);
+                deptNode.SetValue("ID", dept.ID);
+                deptNode.SetValue("NAME", dept.NAME);
                 deptNode.ImageIndex = 0;
-                deptNode.Tag = dept.Id;
+                deptNode.Tag = dept.ID;
 
                 foreach (DictCatalog dict in dictList)
                 {
                     TreeListNode dictNode = treeInfo.AppendNode(null, deptNode);
-                    dictNode.SetValue("ID", dict.CCode);
-                    dictNode.SetValue("NAME", dict.CName);
+                    dictNode.SetValue("ID", dict.CCODE);
+                    dictNode.SetValue("NAME", dict.CNAME);
                     dictNode.ImageIndex = 1;
                     dictNode.SelectImageIndex = 7;
-                    dictNode.Tag = dict.CCode;
+                    dictNode.Tag = dict.CCODE;
                     foreach (EmrTemplet templet in tempList)
                     {
-                        if (templet.DeptId == dept.Id && templet.MrClass == dict.CCode && templet.MrAttr == attr)
+                        if (templet.DEPT_ID == dept.ID && templet.MR_CLASS == dict.CCODE && templet.MR_ATTR == attr)
                         {
                             // 取消限制
                             //if ((int)ContextHelper.Employee.Type!=8)
@@ -244,8 +246,8 @@ namespace Clinic.Case.Business
                             //    }
                             //}
                             TreeListNode tempNode = treeInfo.AppendNode(null, dictNode);
-                            tempNode.SetValue("ID", templet.CreatorId);
-                            tempNode.SetValue("NAME", templet.MrName);
+                            tempNode.SetValue("ID", templet.CREATOR_ID);
+                            tempNode.SetValue("NAME", templet.MR_NAME);
                             tempNode.ImageIndex = 2;
                             tempNode.SelectImageIndex = 3;
                             tempNode.Tag = templet;
@@ -265,7 +267,7 @@ namespace Clinic.Case.Business
         public void AddTreeNode(EmrTemplet templet)
         {
             tempList.Add(templet);
-            LoadTreeData(templet.MrAttr ?? 0);
+            LoadTreeData(templet.MR_ATTR ?? 0);
         }
         private void treeInfo_DoubleClick(object sender, EventArgs e)
         {
@@ -273,9 +275,9 @@ namespace Clinic.Case.Business
             if (templet != null)
             {
                 caseFrm.isEdit = true;
-                caseFrm.myWriterControl.XMLText = templet.XmlDocNew;
-                caseFrm.MedicalCodeEditValue(templet.XyZhenDuan);
-                caseFrm.ChineseMedicineIcdEditValue(templet.ZyZhenDuan);
+                caseFrm.myWriterControl.XMLText = templet.XML_DOC_NEW;
+                caseFrm.MedicalCodeEditValue(templet.XYZhenDuan);
+                caseFrm.ChineseMedicineIcdEditValue(templet.ZYZhenDuan);
                 caseFrm.newEmpTemplet = templet;
                 caseFrm.editSatus = 0;
             }
@@ -303,66 +305,7 @@ namespace Clinic.Case.Business
                 caseFrm.deptid = Convert.ToInt32(node.Tag);
             }
         }
-
-        public int InsertEmrTemplet(EmrTemplet emrTemplet)
-        {
-            var sql = @"INSERT INTO [EMR].[EMRTEMPLET] 
-                    (FileName, DeptId, CreatorId, CreateDateTime, LastTime, Permission, MrClass, MrCode, MrName, MrAttr, 
-                     QcCode, NewPageFlag, FileFlag, WriteTimes, Code, HospitalCode, XmlDoc, XmlDocNew, Py, Wb, IsFirstDaily, 
-                     IsShowFileName, IsYiHuanGouTong, NewPageEnd, Valid, State, Auditor, AuditDate, IsConfigPageSize, ZyZhenDuan, 
-                     XyZhenDuan)
-                    VALUES 
-                    (@FileName, @DeptId, @CreatorId, @CreateDateTime, @LastTime, @Permission, @MrClass, @MrCode, @MrName, @MrAttr, 
-                     @QcCode, @NewPageFlag, @FileFlag, @WriteTimes, @Code, @HospitalCode, @XmlDoc, @XmlDocNew, @Py, @Wb, @IsFirstDaily, 
-                     @IsShowFileName, @IsYiHuanGouTong, @NewPageEnd, @Valid, @State, @Auditor, @AuditDate, @IsConfigPageSize, @ZyZhenDuan, 
-                     @XyZhenDuan);
-                    SELECT SCOPE_IDENTITY();";
-
-            return EMRContext.Insert<int>(sql, emrTemplet);
-        }
-        /// <summary>
-        /// 更新EmrTemplet表中的数据
-        /// </summary>
-        /// <param name="emrTemplet">要更新的数据对象</param>
-        public int UpdateEmrTemplet(EmrTemplet emrTemplet)
-        {
-            var sql = @"UPDATE [EMR].[EMRTEMPLET]
-                    SET 
-                        FileName = @FileName,
-                        DeptId = @DeptId,
-                        CreatorId = @CreatorId,
-                        CreateDateTime = @CreateDateTime,
-                        LastTime = @LastTime,
-                        Permission = @Permission,
-                        MrClass = @MrClass,
-                        MrCode = @MrCode,
-                        MrName = @MrName,
-                        MrAttr = @MrAttr,
-                        QcCode = @QcCode,
-                        NewPageFlag = @NewPageFlag,
-                        FileFlag = @FileFlag,
-                        WriteTimes = @WriteTimes,
-                        Code = @Code,
-                        HospitalCode = @HospitalCode,
-                        XmlDoc = @XmlDoc,
-                        XmlDocNew = @XmlDocNew,
-                        Py = @Py,
-                        Wb = @Wb,
-                        IsFirstDaily = @IsFirstDaily,
-                        IsShowFileName = @IsShowFileName,
-                        IsYiHuanGouTong = @IsYiHuanGouTong,
-                        NewPageEnd = @NewPageEnd,
-                        Valid = @Valid,
-                        State = @State,
-                        Auditor = @Auditor,
-                        AuditDate = @AuditDate,
-                        IsConfigPageSize = @IsConfigPageSize,
-                        ZyZhenDuan = @ZyZhenDuan,
-                        XyZhenDuan = @XyZhenDuan
-                    WHERE TempletId = @TempletId";
-
-            return EMRContext.Execute(sql, emrTemplet);
-        }
+         
         private void btnModeUp_Click(object sender, EventArgs e)
         {
             TreeListNode node = this.treeInfo.FocusedNode;

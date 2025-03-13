@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
     {
         public TemplateSet()
         {
-            InitializeComponent(); 
-            uiPanel1.AddControl(new CaseTemplete());
+            InitializeComponent();
+            uiPanel1.AddControl(new CaseTemplete() { Dock = DockStyle.Fill });
         }
     }
 }

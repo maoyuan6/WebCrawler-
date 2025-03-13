@@ -18,7 +18,7 @@ public class DapperHelper
     /// <param name="DBName">数据库名称</param>
     public DapperHelper(string DBName)
     {
-        _connectionString = $@"Database={DBName};Server=localhost\MSSQLSERVER03;user id=sa;password=;Aa123456";
+        _connectionString = $@"Database={DBName};Server=localhost\MSSQLSERVER03;user id=sa;password=Aa123456;";
     }
 
     /// <summary>
