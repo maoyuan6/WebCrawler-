@@ -1,10 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Documents;
 
 namespace EMR
 {
     /// <summary>
     /// SYMBOLS表的实体模型，表示电子病历系统中的符号信息。
     /// </summary>
+    [Table("[EMR].[SYMBOLS]")]
     public class Symbol
     {
         /// <summary>

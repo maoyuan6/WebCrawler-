@@ -1,8 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Documents;
 
 /// <summary>
 /// 电子病历字典目录实体类，对应数据库表 [EMR].[DICT_CATALOG]
 /// </summary>
+[Table("[EMR].[DICT_CATALOG]")]
 public class DictCatalog
 {
     /// <summary>

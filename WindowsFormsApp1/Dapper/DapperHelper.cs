@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using Dapper;
+using Sunny.UI;
 
 /// <summary>
 /// Dapper 数据库操作帮助类，提供基本的增删改查功能。
@@ -109,12 +112,97 @@ public class DapperHelper
     /// 获取最大 ID 值
     /// </summary>
     /// <returns>当前表中的最大 ID，如果表为空，则返回 0</returns>
-    public int GetMaxId(string IDFiled,string tablename)
+    public int GetMaxId(string IDFiled, string tablename)
     {
         using (var connection = GetConnection())
         {
             string sql = $"SELECT ISNULL(MAX({IDFiled}), 0) FROM {tablename}";
             return connection.ExecuteScalar<int>(sql);
+        }
+    }
+
+    /// <summary>
+    /// 获取表名（支持 [Table("Schema.TableName")]）
+    /// </summary>
+    private static string GetTableName<T>()
+    {
+        var tableAttr = typeof(T).GetCustomAttribute<TableAttribute>();
+        return tableAttr?.Name ?? typeof(T).Name.ToUpper();
+    }
+    /// <summary>
+    /// 通用新增（INSERT）
+    /// </summary>
+    public int Insert<T>(T entity)
+    {
+        var tableName = GetTableName<T>();
+        var properties = typeof(T).GetProperties().Where(p => !p.GetCustomAttributes<NotMappedAttribute>().Any());
+
+        var columns = string.Join(", ", properties.Select(p => p.Name.ToUpper()));
+        var values = string.Join(", ", properties.Select(p => $"@{p.Name}"));
+
+        var sql = $"INSERT INTO {tableName} ({columns}) VALUES ({values}); SELECT SCOPE_IDENTITY();";
+
+        using (var connection = GetConnection())
+        {
+            return connection.ExecuteScalar<int>(sql, entity);
+        }
+    }
+    /// <summary>
+    /// 通用更新（UPDATE）
+    /// </summary>
+    public int Update<T>(T entity, string keyColumn = "ID")
+    {
+        var tableName = GetTableName<T>();
+        var properties = typeof(T).GetProperties().Where(p => !p.GetCustomAttributes<NotMappedAttribute>().Any());
+
+        var setClause = string.Join(", ", properties.Where(p => p.Name.ToUpper() != keyColumn.ToUpper()).Select(p => $"{p.Name.ToUpper()} = @{p.Name}"));
+        var sql = $"UPDATE {tableName} SET {setClause} WHERE {keyColumn.ToUpper()} = @{keyColumn};";
+
+        using (var connection = GetConnection())
+        {
+            return connection.Execute(sql, entity);
+        }
+    }
+
+    /// <summary>
+    /// 通用删除（DELETE）
+    /// </summary>
+    public int Delete<T>(object key, string keyColumn = "ID")
+    {
+        var tableName = GetTableName<T>();
+        var sql = $"DELETE FROM {tableName} WHERE {keyColumn.ToUpper()} = @Key;";
+
+        using (var connection = GetConnection())
+        {
+            return connection.Execute(sql, new { Key = key });
+        }
+    }
+
+    /// <summary>
+    /// 通用查询（SELECT BY ID）
+    /// </summary>
+    public T GetById<T>(object key, string keyColumn = "ID")
+    {
+        var tableName = GetTableName<T>();
+        var sql = $"SELECT * FROM {tableName} WHERE {keyColumn.ToUpper()} = @Key;";
+
+        using (var connection = GetConnection())
+        {
+            return connection.QueryFirstOrDefault<T>(sql, new { Key = key });
+        }
+    }
+
+    /// <summary>
+    /// 通用查询（SELECT ALL）
+    /// </summary>
+    public IEnumerable<T> GetAll<T>()
+    {
+        var tableName = GetTableName<T>();
+        var sql = $"SELECT * FROM {tableName};";
+
+        using (var connection = GetConnection())
+        {
+            return connection.Query<T>(sql);
         }
     }
 }

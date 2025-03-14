@@ -1,10 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows.Documents;
 
 namespace EMR
 {
     /// <summary>
     /// InputInfo 表的实体模型，存储输入信息。
     /// </summary>
+    [Table("[dbo].[InputInfo]")]
     public class InputInfo
     {
         /// <summary>

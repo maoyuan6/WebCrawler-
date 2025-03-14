@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 /// <summary>
 /// 电子病历模板实体类，对应数据库表 [EMR].[EMRTEMPLET]
 /// </summary>
+[Table("[EMR].[EMRTEMPLET]")]
 public class EmrTemplet
 {
     /// <summary>

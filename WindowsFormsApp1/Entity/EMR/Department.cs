@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace WindowsFormsApp1.Entity.EMR
     /// <summary>
     /// 科室表实体类，对应数据库表 [dbo].[DEPARTMENT]
     /// </summary>
+    [Table("DEPARTMENT")]
     public class Department
     {
         public int ID { get; set; }
