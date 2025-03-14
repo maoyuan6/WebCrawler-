@@ -137,8 +137,8 @@ public class DapperHelper
         var tableName = GetTableName<T>();
         var properties = typeof(T).GetProperties().Where(p => !p.GetCustomAttributes<NotMappedAttribute>().Any());
 
-        var columns = string.Join(", ", properties.Select(p => p.Name.ToUpper()));
-        var values = string.Join(", ", properties.Select(p => $"@{p.Name}"));
+        var columns = string.Join(", ", properties.Select(p => $"[{p.Name}]")); // 避免SQL关键字冲突，使用 []
+        var values = string.Join(", ", properties.Select(p => $"@{p.Name}"));  // 保持参数名称不变，确保Dapper正确绑定
 
         var sql = $"INSERT INTO {tableName} ({columns}) VALUES ({values}); SELECT SCOPE_IDENTITY();";
 
@@ -155,7 +155,11 @@ public class DapperHelper
         var tableName = GetTableName<T>();
         var properties = typeof(T).GetProperties().Where(p => !p.GetCustomAttributes<NotMappedAttribute>().Any());
 
-        var setClause = string.Join(", ", properties.Where(p => p.Name.ToUpper() != keyColumn.ToUpper()).Select(p => $"{p.Name.ToUpper()} = @{p.Name}"));
+        var setClause = string.Join(", ", properties
+                .Where(p => !string.Equals(p.Name, keyColumn, StringComparison.OrdinalIgnoreCase)) // **大小写不敏感匹配**
+                .Select(p => $"[{p.Name}] = @{p.Name}")  // **使用 [] 以防关键字冲突**
+        );
+
         var sql = $"UPDATE {tableName} SET {setClause} WHERE {keyColumn.ToUpper()} = @{keyColumn};";
 
         using (var connection = GetConnection())
@@ -170,8 +174,7 @@ public class DapperHelper
     public int Delete<T>(object key, string keyColumn = "ID")
     {
         var tableName = GetTableName<T>();
-        var sql = $"DELETE FROM {tableName} WHERE {keyColumn.ToUpper()} = @Key;";
-
+        var sql = $"DELETE FROM [{tableName}] WHERE [{keyColumn}] = @Key;";
         using (var connection = GetConnection())
         {
             return connection.Execute(sql, new { Key = key });
@@ -184,7 +187,7 @@ public class DapperHelper
     public T GetById<T>(object key, string keyColumn = "ID")
     {
         var tableName = GetTableName<T>();
-        var sql = $"SELECT * FROM {tableName} WHERE {keyColumn.ToUpper()} = @Key;";
+        var sql = $"SELECT * FROM [{tableName}] WHERE [{keyColumn}] = @Key;";
 
         using (var connection = GetConnection())
         {
