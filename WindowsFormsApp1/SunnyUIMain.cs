@@ -11,7 +11,7 @@ using Sunny.UI;
 
 namespace WindowsFormsApp1
 {
-    public partial class SunnyUIMain :UIForm2
+    public partial class SunnyUIMain :UIForm
     {
         public SunnyUIMain()
         {
